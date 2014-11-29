@@ -11,7 +11,9 @@ class DefaultUserController extends \BaseController {
 	public function index()
 	{
 		$products = Sanpham::all();
-		return View::make('default.user.index', compact('products'));
+		$types = Nhomsanpham::with('Loaisanpham')->get();
+		//$names = Loaisanpham::with('Nhomsanpham')->get();
+		return View::make('default.user.index', compact(array('products', 'types')));
 	}
 
 	/**
