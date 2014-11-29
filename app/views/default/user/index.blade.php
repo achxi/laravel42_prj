@@ -1,6 +1,7 @@
 @extends('default._layouts.master')
 
 @section('content')
+	<h2 class="title text-center">Features Items</h2>
 	@if(count($products))
 		@foreach($products as $product)
 					<div class="col-sm-4">
