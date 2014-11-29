@@ -10,7 +10,8 @@ class DefaultUserController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('default.user.index');
+		$products = Sanpham::all();
+		return View::make('default.user.index', compact('products'));
 	}
 
 	/**
