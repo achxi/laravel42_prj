@@ -12,7 +12,11 @@ class DefaultUserController extends \BaseController {
 	{
 		$products = Sanpham::all();
 		$types = Nhomsanpham::with('Loaisanpham')->get();
-		//$names = Loaisanpham::with('Nhomsanpham')->get();
+		foreach($types as $type){
+			foreach($type->Loaisanpham as $some){
+				echo $some->tenloaisp;
+			}
+		}
 		return View::make('default.user.index', compact(array('products', 'types')));
 	}
 

@@ -6,6 +6,6 @@ class Nhomsanpham extends \Eloquent {
 	protected $table = 'Nhomsanpham';
 
 	public function Loaisanpham(){
-		return $this->hasMany('Loaisanpham', 'id_nhom');
+		return $this->hasMany('Loaisanpham', 'id_nhom', 'id_nhom');
 	}	
 }
