@@ -13,7 +13,7 @@ class DefaultUserController extends \BaseController {
 	public function index()
 	{
 		$products = Sanpham::all();
-		$this->layout->title = "Achxi :: Welcome home";
+		$this->layout->title = "Achxi :: Welcome Home";
     	$this->layout->types = $this->types;
 		// 
 		// $groups = Nhomsanpham::find(1);
@@ -68,7 +68,7 @@ class DefaultUserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$this->layout->title = "Achxi :: Product details";
+		$this->layout->title = "Achxi :: Product Details";
 		$this->layout->types = $this->types;
 		$detail = Sanpham::find($id);
 		$this->layout->nest('content', 'default.user.show', array('detail' => $detail));
@@ -109,5 +109,18 @@ class DefaultUserController extends \BaseController {
 	{
 		//
 	}
-
+	public function type($id)
+	{
+		$this->layout->title = "Achxi :: Product By Type";
+		$this->layout->types = $this->types;
+		$catgories = Sanpham::where('id_loai', '=', $id)->get();
+		$this->layout->nest('content', 'default.user.type', array('catgories' => $catgories));
+	}
+	public function search($str)
+	{
+		$this->layout->title = "Achxi :: Search Product";
+		$this->layout->types = $this->types;
+		$results = Sanpham::where('tensp', 'LIKE', "%$str%")->get();
+		$this->layout->nest('content', 'default.user.type', array('results' => $results));
+	}	
 }
