@@ -118,9 +118,10 @@ class DefaultUserController extends \BaseController {
 	}
 	public function search($str)
 	{
-		$this->layout->title = "Achxi :: Search Product";
+		$this->layout->title = "Achxi :: Product By Type";
 		$this->layout->types = $this->types;
-		$results = Sanpham::where('tensp', 'LIKE', "%$str%")->get();
-		$this->layout->nest('content', 'default.user.type', array('results' => $results));
+		$str = Input::get('str');
+		$results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
+		$this->layout->nest('content', 'default.user.search', array('results' => $results));
 	}	
 }

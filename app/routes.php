@@ -14,4 +14,4 @@
 Route::get('/',array('as' => 'default.user.index', 'uses' => 'DefaultUserController@index'));
 Route::get('show/{id}',array('as' => 'default.user.show', 'uses' => 'DefaultUserController@show'));
 Route::get('type/{id}',array('as' => 'default.user.type', 'uses' => 'DefaultUserController@type'));
-Route::post('search/{str}',array('as' => 'default.user.search', 'uses' => 'DefaultUserController@search'));
+Route::get('search/{str}',array('as' => 'default.user.search', 'uses' => 'DefaultUserController@search'));

@@ -6,7 +6,7 @@
 						<div class="product-image-wrapper">
 							<div class="single-products">
 									<div class="productinfo text-center">
-										{{ HTML::image("public/default/images/large/$cat->hinh", "$result->tensp", array('class' => 'myimg')) }}
+										{{ HTML::image("public/default/images/large/$result->hinh", "$result->tensp", array('class' => 'myimg')) }}
 										<h2>{{ number_format($result->gia,0,'','.')." VNĐ" }}</h2>
 										<p>{{ $result->tensp }}</p>
 										<a href="{{ URL::route('default.user.show', $result->id) }}" class='btn btn-default add-to-cart'>

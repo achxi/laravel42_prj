@@ -108,8 +108,8 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="search_box pull-right">
-						<form action="{{ URL::route('default.user.search') }}" method="post">
-							<input type="text" placeholder="Search" />
+						<form action="{{ URL::route('default.user.search') }}" method="get">
+							<input type="text" name="str" placeholder="Search" />
 							<input value="Search" type="hidden" />
 						</form>
 					</div>
