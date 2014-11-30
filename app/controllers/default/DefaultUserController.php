@@ -12,11 +12,26 @@ class DefaultUserController extends \BaseController {
 	{
 		$products = Sanpham::all();
 		$types = Nhomsanpham::with('Loaisanpham')->get();
-		foreach($types as $type){
+		// 
+		// $groups = Nhomsanpham::find(1);
+		// $groups = Nhomsanpham::find(2)->get();
+		// $groups = Nhomsanpham::all();
+		
+/*		foreach($types as $type){
 			foreach($type->Loaisanpham as $some){
-				echo $some->tenloaisp;
+				if($some->id_nhom == 1){
+				echo $some->tenloaisp."<br/>";
+				}
 			}
-		}
+		}	*/
+
+/*		foreach($groups->Loaisanpham as $group){
+				echo $group->tenloaisp."<br/>";
+		}*/	
+			// echo "<pre>";
+			// // dd(DB::getQueryLog());
+			// print_r($groups);
+
 		return View::make('default.user.index', compact(array('products', 'types')));
 	}
 
@@ -49,7 +64,8 @@ class DefaultUserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$types = Nhomsanpham::with('Loaisanpham')->get();
+		return View::make('default.user.show', compact('types'));
 	}
 
 	/**

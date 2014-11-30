@@ -16,12 +16,11 @@
 					<div id="{{ $type->tennhom }}" class="panel-collapse collapse">
 						<div class="panel-body">
 							<ul>
-								<li><a href="#">Nike </a></li>
-								<li><a href="#">Under Armour </a></li>
-								<li><a href="#">Adidas </a></li>
-								<li><a href="#">Puma</a></li>
-								<li><a href="#">ASICS </a></li>
-								<li><a href="#">bla{{ $type->tenloaisp }} </a></li>
+								@foreach($type->Loaisanpham as $group)
+									@if($group->id_nhom == $type->id_nhom)
+									 <li><a href="#"> {{ $group->tenloaisp }} </a></li>
+									@endif
+								@endforeach
 							</ul>
 						</div>
 					</div>
@@ -29,11 +28,6 @@
 				@endforeach
 			@endif
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title"><a href="#">Kids</a></h4>
-				</div>
-			</div>
 		</div><!--/category-products-->
 
 		<div class="brands_products"><!--brands_products-->

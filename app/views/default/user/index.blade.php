@@ -11,14 +11,18 @@
 										{{ HTML::image("public/default/images/large/$product->hinh", "$product->tensp", array('class' => 'myimg')) }}
 										<h2>{{ number_format($product->gia,0,'','.')." VNĐ" }}</h2>
 										<p>{{ $product->tensp }}</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<a href="{{ URL::route('default.user.show', $product->id) }}" class='btn btn-default add-to-cart'>
+										     <i class="fa fa-shopping-cart"></i>Add to cart
+										</a>
 									</div> <!-- /.productinfo text-center -->
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h3>{{ $product->cauhinh }}</h3>
 											<h2>{{ number_format($product->gia,0,'','.')." VNĐ" }}</h2>
 											<p>{{ $product->tensp }}</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<a href="{{ URL::route('default.user.show', $product->id) }}" class='btn btn-default add-to-cart'>
+										     <i class="fa fa-shopping-cart"></i>Add to cart
+											</a>
 										</div> <!-- /.overlay-content -->
 									</div> <!-- /.product-overlay -->
 									{{ HTML::image('public/default/images/home/new.png', 'sale', array('class' => 'new')) }}

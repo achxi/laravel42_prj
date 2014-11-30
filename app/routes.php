@@ -12,3 +12,4 @@
 */
 
 Route::get('/',array('as' => 'default.user.index', 'uses' => 'DefaultUserController@index'));
+Route::get('show/{id}',array('as' => 'default.user.show', 'uses' => 'DefaultUserController@show'));
