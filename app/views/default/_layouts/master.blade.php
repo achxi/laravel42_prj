@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+    <title>{{ $title }}</title>
     {{ HTML::style('public/default/css/bootstrap.min.css') }}
     {{ HTML::style('public/default/css/font-awesome.min.css') }}
     {{ HTML::style('public/default/css/prettyPhoto.css') }}
@@ -34,7 +34,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
-@include('default._layouts.left_sidebar');
+@include('default._layouts.left_sidebar', $types);
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items">

@@ -8,10 +8,14 @@ class DefaultUserController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	protected $layout = 'default._layouts.master';
+
 	public function index()
 	{
 		$products = Sanpham::all();
 		$types = Nhomsanpham::with('Loaisanpham')->get();
+		$this->layout->title = "Achxi :: Welcome home";
+    	$this->layout->types = $types;
 		// 
 		// $groups = Nhomsanpham::find(1);
 		// $groups = Nhomsanpham::find(2)->get();
@@ -30,9 +34,10 @@ class DefaultUserController extends \BaseController {
 		}*/	
 			// echo "<pre>";
 			// // dd(DB::getQueryLog());
-			// print_r($groups);
+			// print_r($types);
 
-		return View::make('default.user.index', compact(array('products', 'types')));
+		// return View::make('default.user.index', compact(array('products', 'types')));
+	    $this->layout->nest('content', 'default.user.index', array('products' => $products));
 	}
 
 	/**
@@ -64,8 +69,7 @@ class DefaultUserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$types = Nhomsanpham::with('Loaisanpham')->get();
-		return View::make('default.user.show', compact('types'));
+
 	}
 
 	/**
