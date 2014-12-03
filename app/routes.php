@@ -14,4 +14,9 @@
 Route::get('/',array('as' => 'default.user.index', 'uses' => 'DefaultUserController@index'));
 Route::get('show/{id}',array('as' => 'default.user.show', 'uses' => 'DefaultUserController@show'));
 Route::get('type/{id}',array('as' => 'default.user.type', 'uses' => 'DefaultUserController@type'));
-Route::get('search/{str}',array('as' => 'default.user.search', 'uses' => 'DefaultUserController@search'));
+Route::post('search',array('as' => 'default.user.search', 'uses' => 'DefaultUserController@search'));
+Route::get('login',array('as' => 'default.user.login', 'uses' => 'DefaultUserController@login'));
+Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
+ /*Route::group(array('before' => 'auth'), function(){
+	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
+}); */

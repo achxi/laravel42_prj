@@ -116,7 +116,7 @@ class DefaultUserController extends \BaseController {
 		$catgories = Sanpham::where('id_loai', '=', $id)->get();
 		$this->layout->nest('content', 'default.user.type', array('catgories' => $catgories));
 	}
-	public function search($str)
+	public function search()
 	{
 		$this->layout->title = "Achxi :: Product By Type";
 		$this->layout->types = $this->types;
@@ -124,4 +124,37 @@ class DefaultUserController extends \BaseController {
 		$results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
 		$this->layout->nest('content', 'default.user.search', array('results' => $results));
 	}	
+	public function login()
+	{
+		$this->layout->title = "Achxi :: Login";
+		$this->layout->types = $this->types;
+		$this->layout->nest('content', 'default.user.login');
+	}	
+	public function postLogin()
+	{
+		$this->layout->title = "Achxi :: Login";
+		$this->layout->types = $this->types;
+		$data = array('username' => Input::get('username'),
+						'password' => Input::get('password')
+					);
+
+		$validator = Validator::make($data, Thanhvien::$auth_rules);
+		if($validator->fails()){
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		if(Auth::attempt(array('user' => 'laravel_hash', 'password' => Hash::make('123456')))){
+			// return Redirect::intended('default.user.index');
+			return "thats it!!!";
+		}
+		// return Redirect::route('default.user.postLogin');
+		return "no good";
+
+/*		$user = Thanhvien::create(array(
+            'user' => 'laravel_hash',
+            'pass' => Hash::make('123456')
+        ));
+
+		Auth::login($user);*/
+	}		
 }

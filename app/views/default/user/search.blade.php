@@ -36,4 +36,8 @@
 		@endforeach
 	@endif
 
+	@unless(count($results))
+		<div><p>Your results returns no products</p></div>
+	@endunless
+
 @stop

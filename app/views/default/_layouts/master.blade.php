@@ -27,23 +27,23 @@
 </head><!--/head-->
 
 <body>
-@include('default._layouts.header');
+@include('default._layouts.header')
 	
-@include('default._layouts.slider');
+@include('default._layouts.slider')
 	
 	<section>
 		<div class="container">
 			<div class="row">
-@include('default._layouts.left_sidebar', $types);
+@include('default._layouts.left_sidebar', $types)
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items">
 						@yield('content')
 					</div><!--features_items-->
 					
-@include('default._layouts.catgory');
+@include('default._layouts.catgory')
 
-@include('default._layouts.recommended_items');
+@include('default._layouts.recommended_items')
 					
 				</div> <!-- /.col-sm-9 padding-right -->
 			</div> <!-- /.row -->

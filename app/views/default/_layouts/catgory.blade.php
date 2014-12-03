@@ -1,5 +1,4 @@
-<div class="category-tab"><!--category-tab-->
-	<div class="col-sm-12">
+<div class="category-tab"><!--category-tab--> <div class="col-sm-12">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
 			<li><a href="#blazers" data-toggle="tab">Blazers</a></li>
