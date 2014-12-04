@@ -28,7 +28,7 @@
 
 <body>
 @include('default._layouts.header')
-	
+	@section('cart')
 @include('default._layouts.slider')
 	
 	<section>
@@ -49,7 +49,7 @@
 			</div> <!-- /.row -->
 		</div> <!-- /.container -->
 	</section>
-	
+	@show <!-- end cart section -->
 @include('default._layouts.footer')
 	
 

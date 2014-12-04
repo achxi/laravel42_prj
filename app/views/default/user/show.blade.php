@@ -45,13 +45,16 @@
 				<p>Web ID: {{ $detail->id}}</p>
 				{{ HTML::image('public/default/images/product-details/rating.png', 'rating') }}
 				<span>
-					<span>{{ number_format($detail->gia,0,'','.')." VNĐ" }}</span>
-					<label>Quantity:</label>
-					<input type="text" value="1" />
-					<button type="button" class="btn btn-fefault cart">
-						<i class="fa fa-shopping-cart"></i>
-						Add to cart
-					</button>
+					<form action="{{ URL::route('default.user.cart_add') }}" method="post" >
+						<span>{{ number_format($detail->gia,0,'','.')." VNĐ" }}</span>
+						<label>Quantity:</label>
+						<input type="text" value="1" name="quantity" />
+						<input type="hidden" value={{ Request::segment(2) }} name="id" />
+						<button type="submit" class="btn btn-fefault cart">
+							<i class="fa fa-shopping-cart"></i>
+							Add to cart
+						</button>
+					</form>
 				</span>
 				<p><b>Availability:</b> In Stock</p>
 				<p><b>Condition:</b> New</p>

@@ -17,6 +17,10 @@ Route::get('type/{id}',array('as' => 'default.user.type', 'uses' => 'DefaultUser
 Route::post('search',array('as' => 'default.user.search', 'uses' => 'DefaultUserController@search'));
 Route::get('login',array('as' => 'default.user.login', 'uses' => 'DefaultUserController@login'));
 Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
+Route::get('cart',array('as' => 'default.user.cart', 'uses' => 'DefaultUserController@cart'));
+Route::post('cart_add',array('as' => 'default.user.cart_add', 'uses' => 'DefaultUserController@cart_add'));
+Route::get('cart_destroy/{id}',array('as' => 'default.user.cart_destroy', 'uses' => 'DefaultUserController@cart_destroy'));
+Route::post('cart_update',array('as' => 'default.user.cart_update', 'uses' => 'DefaultUserController@cart_update'));
  /*Route::group(array('before' => 'auth'), function(){
 	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
 }); */

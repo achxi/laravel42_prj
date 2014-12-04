@@ -157,4 +157,51 @@ class DefaultUserController extends \BaseController {
 
 		Auth::login($user);*/
 	}		
+	public function cart()
+	{
+		$this->layout->title = "Achxi :: Cart";
+		$this->layout->types = $this->types;
+		$carts = Cart::contents();
+		$this->layout->nest('content', 'default.user.cart', array('carts' => $carts));
+	}		
+	public function cart_add()
+	{
+		$id = Input::get('id');
+		$quantity = Input::get('quantity');
+		$product = Sanpham::find($id);
+		Cart::insert(array(
+		    'id'       => $product->id,
+		    'name'     => $product->tensp,
+		    'price'    => $product->gia,
+		    'hinh'	   => $product->hinh,
+		    'quantity' => $quantity,
+		));
+		$carts = Cart::contents();
+/*		echo "<pre>";
+		dd($carts);*/
+		$this->layout->nest('content', 'default.user.cart', array('carts' => $carts));
+		return Redirect::route('default.user.cart');
+
+	}		
+	public function cart_destroy($id)
+	{
+		foreach (Cart::contents() as $item) {
+			if($item->id == $id){
+			    $item->remove();
+			    break;
+			}
+		}
+		return Redirect::route('default.user.cart');
+	}
+	public function cart_update()
+	{
+		$input = Input::all();
+		foreach (Cart::contents() as $item) {
+			foreach($input as $v){
+				if($item->id == $v['id'])
+			    $item->quantity = $v['quantity'];	
+			} 
+		}
+		return Redirect::route('default.user.cart');
+	}				
 }

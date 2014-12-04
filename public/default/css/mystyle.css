@@ -9,3 +9,12 @@ img.myimg_carousel{
 .error{
 	color: red;
 }
+.logo img{
+	width: 139px;
+	height: 100px;
+}
+#empty_cart{
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 40px;
+}

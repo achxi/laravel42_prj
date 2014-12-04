@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
+		'Moltin\Cart\CartServiceProvider',
 	),
 
 	/*
@@ -189,6 +190,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'Cart' => 'Moltin\Cart\Facade',
 
 	),
 
