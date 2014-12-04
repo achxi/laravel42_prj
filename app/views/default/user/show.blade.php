@@ -48,13 +48,14 @@
 					<form action="{{ URL::route('default.user.cart_add') }}" method="post" >
 						<span>{{ number_format($detail->gia,0,'','.')." VNĐ" }}</span>
 						<label>Quantity:</label>
-						<input type="text" value="1" name="quantity" />
+						<input type="text" value="{{ $qty }}" name="quantity" />
 						<input type="hidden" value={{ Request::segment(2) }} name="id" />
 						<button type="submit" class="btn btn-fefault cart">
 							<i class="fa fa-shopping-cart"></i>
 							Add to cart
 						</button>
 					</form>
+					{{ $errors->first('quantity', '<div class="error">:message</div>') }}
 				</span>
 				<p><b>Availability:</b> In Stock</p>
 				<p><b>Condition:</b> New</p>

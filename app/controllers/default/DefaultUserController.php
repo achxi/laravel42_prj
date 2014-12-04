@@ -71,7 +71,21 @@ class DefaultUserController extends \BaseController {
 		$this->layout->title = "Achxi :: Product Details";
 		$this->layout->types = $this->types;
 		$detail = Sanpham::find($id);
-		$this->layout->nest('content', 'default.user.show', array('detail' => $detail));
+		if(Cart::contents()){
+			foreach(Cart::contents() as $item){
+				if($item->id == $id){
+					$qty = $item->quantity;
+					break;
+				}else{
+					$qty = 1;
+				}
+			}
+		}else{
+			$qty = 1;
+		}
+		$this->layout->nest('content', 'default.user.show', array('detail' => $detail,
+																	'qty'  => $qty
+																	));
 	}
 
 	/**
@@ -166,9 +180,24 @@ class DefaultUserController extends \BaseController {
 	}		
 	public function cart_add()
 	{
+		$validator = Validator::make(
+		    array('quantity' => Input::get('quantity')),
+		    array('quantity' => 'required|numeric|min:1')
+		);
+		if($validator->fails()){
+			$errors = $validator->messages();
+			return Redirect::back()->withErrors($validator);
+		}
 		$id = Input::get('id');
 		$quantity = Input::get('quantity');
 		$product = Sanpham::find($id);
+		if(Cart::contents()){
+			foreach(Cart::contents() as $item){
+				if($item->id == $id){
+					$item->quantity = 0;
+				}
+			}
+		}
 		Cart::insert(array(
 		    'id'       => $product->id,
 		    'name'     => $product->tensp,
@@ -179,6 +208,7 @@ class DefaultUserController extends \BaseController {
 		$carts = Cart::contents();
 /*		echo "<pre>";
 		dd($carts);*/
+
 		$this->layout->nest('content', 'default.user.cart', array('carts' => $carts));
 		return Redirect::route('default.user.cart');
 
@@ -199,7 +229,7 @@ class DefaultUserController extends \BaseController {
 		foreach (Cart::contents() as $item) {
 			foreach($input as $v){
 				if($item->id == $v['id'])
-			    $item->quantity = $v['quantity'];	
+			    $item->quantity = (int)$v['quantity'];
 			} 
 		}
 		return Redirect::route('default.user.cart');
