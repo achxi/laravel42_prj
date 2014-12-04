@@ -41,6 +41,8 @@
 										<input class="cart_quantity_input" type="text" name="{{ $i }}[quantity]" value={{ $cart->quantity }} autocomplete="off" size="2">
 										<a class="cart_quantity_down" href=""> - </a>
 									</div>
+									{{ $errors->first("quantity ".$i, '<div class="error">:message</div>') }}
+
 								</td>
 								<td class="cart_total">
 									<p class="cart_total_price">{{ number_format($cart->total(),0,'','.') }}</p>

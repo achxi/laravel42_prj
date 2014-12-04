@@ -226,10 +226,22 @@ class DefaultUserController extends \BaseController {
 	public function cart_update()
 	{
 		$input = Input::all();
+		// echo "<pre>";
+		// dd($input);
+		foreach($input as $key=>$item){
+			$validator = Validator::make(
+			    array('quantity '.$key => $item['quantity']),
+			    array('quantity '.$key => 'required|numeric|min:1')
+		    );
+			if($validator->fails()){
+				$errors = $validator->messages();
+				return Redirect::back()->withErrors($validator);
+			}
+		}
 		foreach (Cart::contents() as $item) {
 			foreach($input as $v){
 				if($item->id == $v['id'])
-			    $item->quantity = (int)$v['quantity'];
+			    $item->quantity = $v['quantity'];
 			} 
 		}
 		return Redirect::route('default.user.cart');
