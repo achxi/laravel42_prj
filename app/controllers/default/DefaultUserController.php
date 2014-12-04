@@ -206,8 +206,6 @@ class DefaultUserController extends \BaseController {
 		    'quantity' => $quantity,
 		));
 		$carts = Cart::contents();
-/*		echo "<pre>";
-		dd($carts);*/
 
 		$this->layout->nest('content', 'default.user.cart', array('carts' => $carts));
 		return Redirect::route('default.user.cart');
@@ -226,8 +224,6 @@ class DefaultUserController extends \BaseController {
 	public function cart_update()
 	{
 		$input = Input::all();
-		// echo "<pre>";
-		// dd($input);
 		foreach($input as $key=>$item){
 			$validator = Validator::make(
 			    array('quantity '.$key => $item['quantity']),
@@ -245,5 +241,44 @@ class DefaultUserController extends \BaseController {
 			} 
 		}
 		return Redirect::route('default.user.cart');
+	}		
+	public function wishlist()
+	{
+		$flag = 0;
+		if(Session::has('wishlist.list')){
+			$products = Sanpham::whereIn('id', Session::get('wishlist.list'))->get();
+			$flag = 1;
+		}else{
+			$products = array();
+			$flag = 0;
+		}
+		$this->layout->title = "Achxi :: Wishlist";
+		$this->layout->types = $this->types;
+		$this->layout->nest('content', 'default.user.wishlist', array('products' => $products, 'flag' => $flag));
 	}				
+	public function wishlist_add($id)
+	{
+		$this->layout->title = "Achxi :: Wishlist";
+		$this->layout->types = $this->types;
+		if(Session::has('wishlist.list')){
+			if(!in_array($id, Session::get('wishlist.list'))){
+				Session::push('wishlist.list', $id);
+			}
+		}else{
+			Session::push('wishlist.list', $id);
+		}
+		return Redirect::route('default.user.wishlist');
+	}	
+	public function wishlist_remove($id)
+	{
+		if(Session::has('wishlist.list')){
+			foreach(Session::get('wishlist.list') as $key=>$item){
+				if($item == $id){
+					Session::forget("wishlist.list.$key");
+					break;
+				}
+			}
+		}
+		return Redirect::route('default.user.wishlist');
+	}	
 }

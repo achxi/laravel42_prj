@@ -17,4 +17,9 @@ img.myimg_carousel{
 	font-size: 18px;
 	font-weight: bold;
 	margin-left: 40px;
+	color: red;
+}
+.wishlist{
+	margin: auto auto 40px 25px;
+	font-size: 18px;
 }
