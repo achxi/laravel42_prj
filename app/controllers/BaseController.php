@@ -8,6 +8,7 @@ class BaseController extends Controller {
 	 * @return void
 	 */
 	public $layout = 'default._layouts.master';
+	
 	public function __construct(){
 		// parent::__construct();
 		$this->types = Nhomsanpham::with('Loaisanpham')->get();
@@ -17,6 +18,7 @@ class BaseController extends Controller {
 		if ( ! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);
+			$this->layout->types = $this->types;
 		}
 	}
 

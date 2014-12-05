@@ -14,7 +14,6 @@ class DefaultUserController extends \BaseController {
 	{
 		$products = Sanpham::all();
 		$this->layout->title = "Achxi :: Welcome Home";
-    	$this->layout->types = $this->types;
 		// 
 		// $groups = Nhomsanpham::find(1);
 		// $groups = Nhomsanpham::find(2)->get();
@@ -30,7 +29,7 @@ class DefaultUserController extends \BaseController {
 
 /*		foreach($groups->Loaisanpham as $group){
 				echo $group->tenloaisp."<br/>";
-		}*/	
+		}       */ 
 			// echo "<pre>";
 			// // dd(DB::getQueryLog());
 			// print_r($types);
@@ -69,7 +68,6 @@ class DefaultUserController extends \BaseController {
 	public function show($id)
 	{
 		$this->layout->title = "Achxi :: Product Details";
-		$this->layout->types = $this->types;
 		$detail = Sanpham::find($id);
 		if(Cart::contents()){
 			foreach(Cart::contents() as $item){
@@ -126,14 +124,12 @@ class DefaultUserController extends \BaseController {
 	public function type($id)
 	{
 		$this->layout->title = "Achxi :: Product By Type";
-		$this->layout->types = $this->types;
 		$catgories = Sanpham::where('id_loai', '=', $id)->get();
 		$this->layout->nest('content', 'default.user.type', array('catgories' => $catgories));
 	}
 	public function search()
 	{
 		$this->layout->title = "Achxi :: Product By Type";
-		$this->layout->types = $this->types;
 		$str = Input::get('str');
 		$results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
 		$this->layout->nest('content', 'default.user.search', array('results' => $results));
@@ -141,13 +137,11 @@ class DefaultUserController extends \BaseController {
 	public function login()
 	{
 		$this->layout->title = "Achxi :: Login";
-		$this->layout->types = $this->types;
 		$this->layout->nest('content', 'default.user.login');
 	}	
 	public function postLogin()
 	{
 		$this->layout->title = "Achxi :: Login";
-		$this->layout->types = $this->types;
 		$data = array('username' => Input::get('username'),
 						'password' => Input::get('password')
 					);
@@ -183,7 +177,6 @@ class DefaultUserController extends \BaseController {
 	public function cart()
 	{
 		$this->layout->title = "Achxi :: Cart";
-		$this->layout->types = $this->types;
 		$carts = Cart::contents();
 		$this->layout->nest('content', 'default.user.cart', array('carts' => $carts));
 	}		
@@ -262,7 +255,6 @@ class DefaultUserController extends \BaseController {
 			$flag = 0;
 		}
 		$this->layout->title = "Achxi :: Wishlist Products";
-		$this->layout->types = $this->types;
 		$this->layout->nest('content', 'default.user.wishlist', array('products' => $products, 'flag' => $flag));
 	}				
 	public function wishlist_add($id)
@@ -312,7 +304,6 @@ class DefaultUserController extends \BaseController {
 			$flag = 0;
 		}
 		$this->layout->title = "Achxi :: Compare Products";
-		$this->layout->types = $this->types;
 		$this->layout->nest('content', 'default.user.compare', array('products' => $products, 'flag' => $flag));
 	}	
 	public function compare_remove($id)
@@ -330,7 +321,6 @@ class DefaultUserController extends \BaseController {
 	public function contact()
 	{
 		$this->layout->title = "Achxi :: Contact Us";
-		$this->layout->types = $this->types;
 		$this->layout->nest('content', 'default.user.contact');		
 	}			
 }

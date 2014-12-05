@@ -97,8 +97,12 @@
                                     <li><a href="shop.html">Products</a></li>
 									<li><a href="product-details.html">Product Details</a></li> 
 									<li><a href="checkout.html">Checkout</a></li> 
-									<li><a href="{{ URL::route('default.user.cart') }}">Cart</a></li> 
+									<li><a href="{{ URL::route('default.user.cart') }}">Cart</a></li>
+									@if(Auth::check())
+									<li><a href="{{ URL::route('default.user.logout') }}">Logout</a></li>	
+									@else
 									<li><a href="{{ URL::route('default.user.login') }}">Login</a></li> 
+									@endif 
                                 </ul>
                             </li> 
 							<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
