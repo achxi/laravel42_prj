@@ -245,7 +245,7 @@ class DefaultUserController extends \BaseController {
 	public function wishlist()
 	{
 		$flag = 0;
-		if(Session::has('wishlist.list')){
+		if(Session::has('wishlist.list.0')){
 			$products = Sanpham::whereIn('id', Session::get('wishlist.list'))->get();
 			$flag = 1;
 		}else{
