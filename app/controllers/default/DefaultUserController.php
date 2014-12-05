@@ -329,4 +329,17 @@ class DefaultUserController extends \BaseController {
 		$products = array();
 		$this->layout->nest('content', 'default.user.checkout', array('products' => $products));
 	}		
+	public function postcheckout()
+	{
+		$input = Input::all();
+		//validate input
+		//insert necessary info into database
+		//intergrated paypal or stripped to checkout - maybe opencart or magento
+		//after finish
+		Cart::destroy();
+		//redirect to thank you page with flash session info
+		//redirect to home page
+		$products = array();
+		$this->layout->nest('content', 'default.user.checkout', array('products' => $products));
+	}		
 }

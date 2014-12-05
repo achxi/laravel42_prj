@@ -26,3 +26,12 @@ img.myimg_carousel{
 	font-size: 18px;
 	color: green;
 }
+/*******************************
+***********checkout page********/
+.shopper-informations input.info{
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #F0F0E9;
+	border: 0px;
+	width: 100%;
+}

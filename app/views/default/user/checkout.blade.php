@@ -57,19 +57,19 @@
 					<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
 				</div><!--/register-req-->
 			@endunless
-			
+			{{ Form::open(array('route' => 'default.user.postcheckout')) }}
 			<div class="shopper-informations">
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="shopper-info">
 							<p>Shopper Information</p>
 							<form>
-								<input type="text" placeholder="Display Name" value="{{{ isset(Auth::user()->hoten) ? Auth::user()->hoten : ''}}}">
-								<input type="text" placeholder="User Name" value="{{{ isset(Auth::user()->user) ? Auth::user()->user : ''}}}">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
+								<input type="text" class="info" placeholder="Display Name" name="name" value="{{{ isset(Auth::user()->hoten) ? Auth::user()->hoten : ''}}}">
+								<input type="text" class="info" placeholder="User Name" name="username" value="{{{ isset(Auth::user()->user) ? Auth::user()->user : ''}}}">
+								<input type="password" class="info" placeholder="Password" name="password">
+								<input type="password" class="info" placeholder="Confirm password" name="pwd_confirm">
 							</form>
-							<a class="btn btn-primary" href="">Continue</a>
+							<button type="submit" class="btn btn-primary" href="">Continue</button>
 						</div>
 					</div>
 					<div class="col-sm-5 clearfix">
@@ -77,16 +77,16 @@
 							<p>Bill To</p>
 							<div class="form-one">
 								<form>
-									<input type="text" placeholder="Company Name">
-									<input type="text" placeholder="Email*" value="{{{ isset(Auth::user()->email) ? Auth::user()->email : ''}}}">
-									<input type="text" placeholder="Address 1 *" value="{{{ isset(Auth::user()->diachi) ? Auth::user()->diachi : ''}}}">
-									<input type="text" placeholder="Address 2">
+									<input type="text" placeholder="Company Name" name="company_name">
+									<input type="text" placeholder="Email*" name="email" value="{{{ isset(Auth::user()->email) ? Auth::user()->email : ''}}}">
+									<input type="text" placeholder="Address 1 *" name="address1" value="{{{ isset(Auth::user()->diachi) ? Auth::user()->diachi : ''}}}">
+									<input type="text" placeholder="Address 2" name="address2">
 								</form>
 							</div>
 							<div class="form-two">
 								<form>
-									<input type="text" placeholder="Zip / Postal Code *">
-									<select>
+									<input type="text" placeholder="Zip / Postal Code *" name="zip_code">
+									<select name="country">
 										<option>-- Country --</option>
 										<option>United States</option>
 										<option>Bangladesh</option>
@@ -97,7 +97,7 @@
 										<option>Canada</option>
 										<option>Dubai</option>
 									</select>
-									<select>
+									<select name="region">
 										<option>-- State / Province / Region --</option>
 										<option>United States</option>
 										<option>Bangladesh</option>
@@ -108,8 +108,8 @@
 										<option>Canada</option>
 										<option>Dubai</option>
 									</select>
-									<input type="text" placeholder="Phone *" value="{{{ isset(Auth::user()->dienthoai) ? Auth::user()->dienthoai : ''}}}">
-									<input type="text" placeholder="Fax">
+									<input type="text" placeholder="Phone *" name="phone" value="{{{ isset(Auth::user()->dienthoai) ? Auth::user()->dienthoai : ''}}}">
+									<input type="text" placeholder="Fax" name="fax">
 								</form>
 							</div>
 						</div>
@@ -117,8 +117,8 @@
 					<div class="col-sm-4">
 						<div class="order-message">
 							<p>Shipping Order</p>
-							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
-							<label><input type="checkbox"> Shipping to bill address</label>
+							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="16" name="message"></textarea>
+							<label><input type="checkbox" name="check_ship"> Shipping to bill address</label>
 						</div>	
 					</div>					
 				</div>
@@ -195,15 +195,16 @@
 			</div>
 			<div class="payment-options">
 					<span>
-						<label><input type="checkbox"> Direct Bank Transfer</label>
+						<label><input type="checkbox" name="method_direct"> Direct Bank Transfer</label>
 					</span>
 					<span>
-						<label><input type="checkbox"> Check Payment</label>
+						<label><input type="checkbox" name="method_payment"> Check Payment</label>
 					</span>
 					<span>
-						<label><input type="checkbox"> Paypal</label>
+						<label><input type="checkbox" name="method_paypal"> Paypal</label>
 					</span>
 				</div>
+				{{  Form::close() }}
 	@endunless
 		</div>
 	</section> <!--/#cart_items-->
