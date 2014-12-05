@@ -23,3 +23,24 @@ img.myimg_carousel{
 	margin: auto auto 40px 25px;
 	font-size: 18px;
 }
+.contact-form{
+	margin: 10px auto;
+}
+@media (max-width: 480px) {
+	
+	#contentPro iframe{
+		width: 100%;
+	}
+}
+@media (max-width: 768px) {
+	
+	#contentPro iframe{
+		width: 100%;
+	}
+}
+@media (max-width: 1200px) {
+	
+	#contentPro iframe{
+		width: 100%;
+	}
+}

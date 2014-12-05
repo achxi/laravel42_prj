@@ -73,6 +73,7 @@
 		</div>
 	</section> <!--/#cart_items-->
 
+	@if($carts)
 		<section id="do_action">
 		<div class="container">
 			<div class="heading">
@@ -151,6 +152,7 @@
 			</div>
 		</div>
 	</section><!--/#do_action-->
+	@endif
 
 
 @stop

@@ -27,6 +27,7 @@ Route::get('wishlist_remove/{id}',array('as' => 'default.user.wishlist_remove', 
 Route::get('compare/{id}',array('as' => 'default.user.compare_add', 'uses' => 'DefaultUserController@compare_add'));
 Route::get('compare',array('as' => 'default.user.compare', 'uses' => 'DefaultUserController@compare'));
 Route::get('compare_remove/{id}',array('as' => 'default.user.compare_remove', 'uses' => 'DefaultUserController@compare_remove'));
+Route::get('contact',array('as' => 'default.user.contact', 'uses' => 'DefaultUserController@contact'));
  /*Route::group(array('before' => 'auth'), function(){
 	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
 }); */

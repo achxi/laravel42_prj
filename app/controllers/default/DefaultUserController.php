@@ -317,5 +317,11 @@ class DefaultUserController extends \BaseController {
 			}
 		}
 		return Redirect::route('default.user.compare');
+	}
+	public function contact()
+	{
+		$this->layout->title = "Achxi :: Contact Us";
+		$this->layout->types = $this->types;
+		$this->layout->nest('content', 'default.user.contact');		
 	}			
 }
