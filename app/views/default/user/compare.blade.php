@@ -1,6 +1,8 @@
 @section('content')
-	<h2 class="title text-center">Features Items</h2>
-	@if(count($products))
+	<h2 class="title text-center">Compare Items</h2>
+	@if($flag == 0)
+		<div class="error wishlist">Your wishlist items is empty now</div>
+	@else	
 		@foreach($products as $product)
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
@@ -27,8 +29,8 @@
 							</div> <!-- /.single-products -->
 							<div class="choose">
 								<ul class="nav nav-pills nav-justified">
-									<li><a href="{{ URL::route('default.user.wishlist_add', $product->id) }}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-									<li><a href="{{ URL::route('default.user.compare_add', $product->id) }}"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+									<li><a href="{{ URL::route('default.user.wishlist_remove', $product->id) }}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+									<li><a href="{{ URL::route('default.user.compare_remove', $product->id) }}"><i class="fa fa-plus-square"></i>Out of compare</a></li>
 								</ul>
 							</div> <!-- /.choose -->
 						</div> <!-- /.product-image-wrapper -->

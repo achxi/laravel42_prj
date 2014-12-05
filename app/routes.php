@@ -24,7 +24,9 @@ Route::post('cart_update',array('as' => 'default.user.cart_update', 'uses' => 'D
 Route::get('wishlist/{id}',array('as' => 'default.user.wishlist_add', 'uses' => 'DefaultUserController@wishlist_add'));
 Route::get('wishlist',array('as' => 'default.user.wishlist', 'uses' => 'DefaultUserController@wishlist'));
 Route::get('wishlist_remove/{id}',array('as' => 'default.user.wishlist_remove', 'uses' => 'DefaultUserController@wishlist_remove'));
-
+Route::get('compare/{id}',array('as' => 'default.user.compare_add', 'uses' => 'DefaultUserController@compare_add'));
+Route::get('compare',array('as' => 'default.user.compare', 'uses' => 'DefaultUserController@compare'));
+Route::get('compare_remove/{id}',array('as' => 'default.user.compare_remove', 'uses' => 'DefaultUserController@compare_remove'));
  /*Route::group(array('before' => 'auth'), function(){
 	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
 }); */

@@ -252,14 +252,12 @@ class DefaultUserController extends \BaseController {
 			$products = array();
 			$flag = 0;
 		}
-		$this->layout->title = "Achxi :: Wishlist";
+		$this->layout->title = "Achxi :: Wishlist Products";
 		$this->layout->types = $this->types;
 		$this->layout->nest('content', 'default.user.wishlist', array('products' => $products, 'flag' => $flag));
 	}				
 	public function wishlist_add($id)
 	{
-		$this->layout->title = "Achxi :: Wishlist";
-		$this->layout->types = $this->types;
 		if(Session::has('wishlist.list')){
 			if(!in_array($id, Session::get('wishlist.list'))){
 				Session::push('wishlist.list', $id);
@@ -281,4 +279,43 @@ class DefaultUserController extends \BaseController {
 		}
 		return Redirect::route('default.user.wishlist');
 	}	
+	public function compare_add($id)
+	{
+		if(Session::has('compare.list')){
+			if(!in_array($id, Session::get('compare.list'))){
+				Session::push('compare.list', $id);
+			}
+		}else{
+			Session::push('compare.list', $id);
+		}
+		// echo "<pre>";
+		// dd(Session::get('compare.list'));
+		return Redirect::route('default.user.compare');
+	}		
+	public function compare()
+	{
+		$flag = 0;
+		if(Session::has('compare.list.0')){
+			$products = Sanpham::whereIn('id', Session::get('compare.list'))->get();
+			$flag = 1;
+		}else{
+			$products = array();
+			$flag = 0;
+		}
+		$this->layout->title = "Achxi :: Compare Products";
+		$this->layout->types = $this->types;
+		$this->layout->nest('content', 'default.user.compare', array('products' => $products, 'flag' => $flag));
+	}	
+	public function compare_remove($id)
+	{
+		if(Session::has('compare.list')){
+			foreach(Session::get('compare.list') as $key=>$item){
+				if($item == $id){
+					Session::forget("compare.list.$key");
+					break;
+				}
+			}
+		}
+		return Redirect::route('default.user.compare');
+	}			
 }
