@@ -84,13 +84,13 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
+							<li>Cart Sub Total <span>{{ number_format(Cart::total(),0,'','.') }}</span></li>
 							<li>Eco Tax <span>0</span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$59</span></li>
+							<li>Total <span>{{ number_format(Cart::total(),0,'','.') }}</span></li>
 						</ul>
 							<button type="submit" class="btn btn-default update">Update</button>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+							<a class="btn btn-default check_out" href="{{ URL::route('default.user.checkout') }}">Check Out</a>
 					</div>
 				</div>	
 			</form>		

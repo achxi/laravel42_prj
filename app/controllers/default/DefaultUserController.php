@@ -323,4 +323,10 @@ class DefaultUserController extends \BaseController {
 		$this->layout->title = "Achxi :: Contact Us";
 		$this->layout->nest('content', 'default.user.contact');		
 	}			
+	public function checkout()
+	{
+		$this->layout->title = "Achxi :: Checkout";
+		$products = array();
+		$this->layout->nest('content', 'default.user.checkout', array('products' => $products));
+	}		
 }

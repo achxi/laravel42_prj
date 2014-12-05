@@ -34,6 +34,9 @@ Route::get('compare_remove/{id}',array('as' => 'default.user.compare_remove', 'u
 
 Route::get('contact',array('as' => 'default.user.contact', 'uses' => 'DefaultUserController@contact'));
 
+Route::get('checkout',array('as' => 'default.user.checkout', 'uses' => 'DefaultUserController@checkout'));
+Route::post('postcheckout',array('as' => 'default.user.postcheckout', 'uses' => 'DefaultUserController@postcheckout'));
+
  /*Route::group(array('before' => 'auth'), function(){
 	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
 }); */
