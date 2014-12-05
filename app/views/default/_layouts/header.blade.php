@@ -43,7 +43,6 @@
 								<li><a href="#">UK</a></li>
 							</ul>
 						</div>
-						
 						<div class="btn-group">
 							<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 								DOLLAR
@@ -54,6 +53,9 @@
 								<li><a href="#">Pound</a></li>
 							</ul>
 						</div>
+							@if(Session::has('flash_mess'))
+								<div class="welcome">{{ Session::get('flash_mess') }}</div>
+							@endif
 					</div>
 				</div>
 				<div class="col-sm-8">
@@ -63,7 +65,11 @@
 							<li><a href="{{ URL::route('default.user.wishlist') }}"><i class="fa fa-star"></i> Wishlist</a></li>
 							<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 							<li><a href="{{ URL::route('default.user.cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+							@if(Auth::check())
+							<li><a href="{{ URL::route('default.user.logout') }}"><i class="fa fa-user"></i>{{ Auth::user()->user }} (logout)</a></li>
+							@else
 							<li><a href="{{ URL::route('default.user.login') }}"><i class="fa fa-lock"></i> Login</a></li>
+							@endif
 						</ul>
 					</div>
 				</div>

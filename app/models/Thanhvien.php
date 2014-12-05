@@ -21,7 +21,7 @@ class Thanhvien extends \Eloquent implements UserInterface {
 	 */
 	public function getAuthIdentifier()
 	{
-		return $this->user;
+		 return $this->getKey();
 	}
 
 	/**

@@ -157,20 +157,29 @@ class DefaultUserController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		if(Auth::attempt(array('user' => 'laravel_hash', 'password' => Hash::make('123456')))){
-			// return Redirect::intended('default.user.index');
-			return "thats it!!!";
+/*	    $credentials = [
+	        'user' => 'testmanh',
+	        'password' => '123456'
+	    ];
+	    dd(Auth::attempt($credentials));*/
+
+		if(Auth::attempt(array('user' => Input::get('username'), 'password' => Input::get('password')))){
+			return Redirect::intended('/')->with(Session::flash('flash_mess', 'Login successfully'));
 		}
-		// return Redirect::route('default.user.postLogin');
-		return "no good";
+		return Redirect::route('default.user.login')->with(Session::flash('flash_mess', 'Wrong username or password'));
 
 /*		$user = Thanhvien::create(array(
-            'user' => 'laravel_hash',
+            'user' => 'testmanh',
             'pass' => Hash::make('123456')
         ));
 
 		Auth::login($user);*/
 	}		
+
+	public function logout(){
+		Auth::logout();
+		return Redirect::route('default.user.index');
+	}
 	public function cart()
 	{
 		$this->layout->title = "Achxi :: Cart";
