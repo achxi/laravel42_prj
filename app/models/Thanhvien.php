@@ -18,6 +18,10 @@ class Thanhvien extends \Eloquent implements UserInterface {
 		'password' => 'required|min:5',
 		'email' => 'required|email|unique:thanhvien,email'
 	];
+	public static $auth_rules_update = [
+		'password' => 'required|min:5',
+		'email' => 'required|email|unique:thanhvien,email,'
+	];	
 	/**
 	 * Get the unique identifier for the user.
 	 *

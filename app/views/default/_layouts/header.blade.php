@@ -62,7 +62,7 @@
 					<div class="shop-menu pull-right">
 						<ul class="nav navbar-nav">
 							@if(Auth::check())
-								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="{{ URL::route('default.user.account') }}"><i class="fa fa-user"></i> Account</a></li>
 							@else
 								<li><a href="{{ URL::route('default.user.register') }}"><i class="fa fa-user"></i> Register</a></li>
 							@endif

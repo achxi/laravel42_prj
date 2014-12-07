@@ -371,5 +371,40 @@ class DefaultUserController extends \BaseController {
 		$products = array();
 		$this->layout->nest('content', 'default.user.register', array('products' => $products));
 		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'You have been registered an account successfully'));;
+	}	
+	public function account()
+	{
+		$this->layout->title = "Achxi :: Account Setting";
+		$user = Thanhvien::where('user', '=', Auth::user()->user)
+           ->first();
+		$products = array();
+		$this->layout->nest('content', 'default.user.account', array('user' => $user));
+	}	
+	public function postaccount()
+	{
+		$data = array('loginname' => Input::get('loginname'),
+				'password' => Input::get('password'),
+				'email' => Input::get('email')
+			);
+
+		$validator = Validator::make(
+		    $data,
+		    array('email' => 'required|email|unique:thanhvien,email,'.Auth::user()->user.',user',
+                  'password' => 'required|min:5'
+		    	)
+		);
+		if($validator->fails()){
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+		if(Auth::attempt(array('user' => Input::get('loginname'), 'password' => Input::get('password')))){
+			$user = Thanhvien::find(Input::get('loginname'));
+			$user->email = Input::get('email');
+			$user->save();
+			return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Updated successfully'));;
+		}
+		return "lo";
+
+		$products = array();
+		$this->layout->nest('content', 'default.user.register', array('products' => $products));
 	}		
 }
