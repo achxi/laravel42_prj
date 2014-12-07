@@ -399,12 +399,15 @@ class DefaultUserController extends \BaseController {
 		if(Auth::attempt(array('user' => Input::get('loginname'), 'password' => Input::get('password')))){
 			$user = Thanhvien::find(Input::get('loginname'));
 			$user->email = Input::get('email');
+			$user->hoten = Input::get('fullname');
+			$user->diachi = Input::get('address');
+			$user->dienthoai = Input::get('phone');
 			$user->save();
 			return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Updated successfully'));;
 		}
-		return "lo";
+		return Redirect::route('default.user.account')->with(Session::flash('flash_mess', 'Wrong username or password'));
 
 		$products = array();
-		$this->layout->nest('content', 'default.user.register', array('products' => $products));
+		$this->layout->nest('content', 'default.user.account', array('products' => $products));
 	}		
 }
