@@ -141,7 +141,6 @@ class DefaultUserController extends \BaseController {
 	}	
 	public function postLogin()
 	{
-		$this->layout->title = "Achxi :: Login";
 		$data = array('username' => Input::get('username'),
 						'password' => Input::get('password')
 					);
@@ -341,5 +340,36 @@ class DefaultUserController extends \BaseController {
 		//redirect to home page
 		$products = array();
 		$this->layout->nest('content', 'default.user.checkout', array('products' => $products));
+		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Thank you for using our shopping system. Our manager is going to contact you soon to confirm the process'));;
+	}		
+	public function register()
+	{
+		$this->layout->title = "Achxi :: Register Account";
+		$products = array();
+		$this->layout->nest('content', 'default.user.register', array('products' => $products));
+	}	
+	public function postregister()
+	{
+		$input = Input::all();
+		$data = array('loginname' => Input::get('loginname'),
+				'password' => Input::get('password'),
+				'email' => Input::get('email')
+			);
+
+		$validator = Validator::make($data, Thanhvien::$auth_rules_reg);
+		if($validator->fails()){
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$user = Thanhvien::create(array(
+			'user'  => Input::get('loginname'),
+			'pass'  => Hash::make(Input::get('password')),
+			'email' => Input::get('email')
+        ));
+
+		Auth::login($user);
+		$products = array();
+		$this->layout->nest('content', 'default.user.register', array('products' => $products));
+		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'You have been registered an account successfully'));;
 	}		
 }

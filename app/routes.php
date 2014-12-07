@@ -37,6 +37,9 @@ Route::get('contact',array('as' => 'default.user.contact', 'uses' => 'DefaultUse
 Route::get('checkout',array('as' => 'default.user.checkout', 'uses' => 'DefaultUserController@checkout'));
 Route::post('postcheckout',array('as' => 'default.user.postcheckout', 'uses' => 'DefaultUserController@postcheckout'));
 
+Route::get('register',array('as' => 'default.user.register', 'uses' => 'DefaultUserController@register'));
+Route::post('postregister',array('as' => 'default.user.postregister', 'uses' => 'DefaultUserController@postregister'));
+
  /*Route::group(array('before' => 'auth'), function(){
 	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
 }); */

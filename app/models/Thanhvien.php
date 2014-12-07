@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Auth\UserInterface;
 class Thanhvien extends \Eloquent implements UserInterface {
-	protected $fillable = ['user', 'pass'];
+	protected $fillable = ['user', 'pass', 'email'];
 
 	protected $table = 'thanhvien';
 	protected $primaryKey = 'user';
@@ -13,7 +13,11 @@ class Thanhvien extends \Eloquent implements UserInterface {
 		'username' => 'required',
 		'password' => 'required|min:5'
 	];		
-
+	public static $auth_rules_reg = [
+		'loginname' => 'required|unique:thanhvien,user',
+		'password' => 'required|min:5',
+		'email' => 'required|email|unique:thanhvien,email'
+	];
 	/**
 	 * Get the unique identifier for the user.
 	 *
