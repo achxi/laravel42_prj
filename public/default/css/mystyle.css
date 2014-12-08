@@ -35,3 +35,9 @@ img.myimg_carousel{
 	border: 0px;
 	width: 100%;
 }
+/*******************************
+*******recommended items********/
+.recommended_img img{
+	width: 150px;
+	height: 150px;
+}

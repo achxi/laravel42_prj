@@ -43,7 +43,7 @@
 					
 @include('default._layouts.catgory', $bot_cats)
 
-@include('default._layouts.recommended_items')
+@include('default._layouts.recommended_items', $rands)
 					
 				</div> <!-- /.col-sm-9 padding-right -->
 			</div> <!-- /.row -->
