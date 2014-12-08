@@ -41,7 +41,7 @@
 						@yield('content')
 					</div><!--features_items-->
 					
-@include('default._layouts.catgory')
+@include('default._layouts.catgory', $bot_cats)
 
 @include('default._layouts.recommended_items')
 					
