@@ -1,6 +1,7 @@
 @section('content')
 	<h2 class="title text-center">Features Items</h2>
 	@if(count($catgories))
+		<div class="col-sm-12">{{ $catgories->links() }}</div>
 		@foreach($catgories as $cat)
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
@@ -34,6 +35,7 @@
 						</div> <!-- /.product-image-wrapper -->
 					</div> <!-- /.col-sm-4 -->
 		@endforeach
+		<div class="col-sm-12">{{ $catgories->links() }}</div>
 	@endif
 
 @stop

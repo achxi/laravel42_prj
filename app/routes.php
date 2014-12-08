@@ -40,9 +40,5 @@ Route::post('postcheckout',array('as' => 'default.user.postcheckout', 'uses' => 
 Route::get('register',array('as' => 'default.user.register', 'uses' => 'DefaultUserController@register'));
 Route::post('postregister',array('as' => 'default.user.postregister', 'uses' => 'DefaultUserController@postregister'));
 
-Route::get('account',array('as' => 'default.user.account', 'uses' => 'DefaultUserController@account'));
+Route::get('account', array('before' => 'auth','as' => 'default.user.account', 'uses' => 'DefaultUserController@account'));
 Route::post('postaccount',array('as' => 'default.user.postaccount', 'uses' => 'DefaultUserController@postaccount'));
-
- /*Route::group(array('before' => 'auth'), function(){
-	Route::post('postlogin',array('as' => 'default.user.postLogin', 'uses' => 'DefaultUserController@postLogin'));
-}); */

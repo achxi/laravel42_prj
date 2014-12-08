@@ -12,7 +12,7 @@ class DefaultUserController extends \BaseController {
 
 	public function index()
 	{
-		$products = Sanpham::all();
+		$products = Sanpham::paginate(9);
 		$this->layout->title = "Achxi :: Welcome Home";
 		// 
 		// $groups = Nhomsanpham::find(1);
@@ -124,14 +124,18 @@ class DefaultUserController extends \BaseController {
 	public function type($id)
 	{
 		$this->layout->title = "Achxi :: Product By Type";
-		$catgories = Sanpham::where('id_loai', '=', $id)->get();
+		$catgories = Sanpham::where('id_loai', '=', $id)->paginate(9);
 		$this->layout->nest('content', 'default.user.type', array('catgories' => $catgories));
 	}
 	public function search()
 	{
 		$this->layout->title = "Achxi :: Product By Type";
 		$str = Input::get('str');
-		$results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
+		if(empty($str)){
+			$results = array();
+		}else{
+			$results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
+		}
 		$this->layout->nest('content', 'default.user.search', array('results' => $results));
 	}	
 	public function login()
@@ -384,14 +388,15 @@ class DefaultUserController extends \BaseController {
 	{
 		$data = array('loginname' => Input::get('loginname'),
 				'password' => Input::get('password'),
-				'email' => Input::get('email')
+				'email' => Input::get('email'),
+				'phone' => Input::get('phone'),
 			);
 
 		$validator = Validator::make(
-		    $data,
-		    array('email' => 'required|email|unique:thanhvien,email,'.Auth::user()->user.',user',
-                  'password' => 'required|min:5'
-		    	)
+			$data, array('email' => 'required|email|unique:thanhvien,email,'.Auth::user()->user.',user',
+			'password'           => 'required|min:5',
+			'phone'              => 'numeric'
+			)
 		);
 		if($validator->fails()){
 			return Redirect::back()->withErrors($validator)->withInput();

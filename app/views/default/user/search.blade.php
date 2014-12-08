@@ -37,7 +37,7 @@
 	@endif
 
 	@unless(count($results))
-		<div><p>Your results returns no products</p></div>
+		<div class="error"><p>Your search retuns no results.</p></div>
 	@endunless
 
 @stop
