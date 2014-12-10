@@ -43,4 +43,8 @@ Route::post('postregister',array('as' => 'default.user.postregister', 'uses' => 
 Route::get('account', array('before' => 'auth','as' => 'default.user.account', 'uses' => 'DefaultUserController@account'));
 Route::post('postaccount',array('as' => 'default.user.postaccount', 'uses' => 'DefaultUserController@postaccount'));
 
+Route::get('page_404',array('as' => 'default.user.page_404', 'uses' => 'DefaultUserController@page_404'));
+
+Route::post('price_range',array('as' => 'default.user.price_range', 'uses' => 'DefaultUserController@price_range'));
+
 // Route::get('search_ajax',array('as' => 'default.user.search_ajax', 'uses' => 'DefaultUserController@search_ajax'));

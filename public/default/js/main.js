@@ -57,8 +57,7 @@ $(document).ready(function(){
 		            };
 
                }
-          });          
-            
+          });            
 /*        $("#str").autocomplete({
 	      source: function (request, response) {
 	            var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");

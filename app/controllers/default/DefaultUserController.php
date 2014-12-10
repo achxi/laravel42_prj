@@ -424,6 +424,35 @@ class DefaultUserController extends \BaseController {
 		$products = array();
 		$this->layout->nest('content', 'default.user.account', array('products' => $products));
 	}
+	public function page_404(){
+		$this->title = "Achxi :: 404 not found";
+		return View::make('default._layouts.page_404')->with('title', $this->title);
+	}
+	public function price_range()
+	{
+		$validator = Validator::make(
+		    array('Min Value' => Input::get('minval'), 'Max Value' => Input::get('maxval')),
+		    array('minval' => 'sometimes|numeric', 'maxval' => 'sometimes|numeric')
+		);
+		if($validator->fails()){
+			$errors = $validator->messages();
+			return Redirect::back()->withErrors($validator);
+		}
+
+		$minval = Input::get('minval');
+		$maxval = Input::get('maxval');
+
+		if(!$minval){
+			$products = Sanpham::where('gia', '<=', $maxval)->get();
+		}elseif(!$maxval){
+			$products = Sanpham::where('gia', '>=', $minval)->get();
+		}else{
+			$products = Sanpham::where('gia', '>=', $minval)->where('gia', '<=', $maxval)->get();			
+		}
+		$this->layout->title = "Achxi :: Price Range";
+	    $this->layout->nest('content', 'default.user.price_range', array('products' => $products));
+	}
+
 /*	public function search_ajax(){
 		$this->layout->title = "seach ajax";
 		$str = Input::get('str');

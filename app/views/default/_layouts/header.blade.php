@@ -98,9 +98,8 @@
 							<li><a href="{{ URL::route('default.user.index') }}" class="active">Home</a></li>
 							<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-									<li><a href="product-details.html">Product Details</a></li> 
-									<li><a href="checkout.html">Checkout</a></li> 
+                                    <li><a href="{{ URL::route('default.user.index') }}">Products</a></li>
+									<li><a href="{{ URL::route('default.user.checkout') }}">Checkout</a></li> 
 									<li><a href="{{ URL::route('default.user.cart') }}">Cart</a></li>
 									@if(Auth::check())
 									<li><a href="{{ URL::route('default.user.logout') }}">Logout</a></li>	
@@ -115,7 +114,7 @@
 									<li><a href="blog-single.html">Blog Single</a></li>
                                 </ul>
                             </li> 
-							<li><a href="404.html">404</a></li>
+							<li><a href="{{ URL::route('default.user.page_404') }}">404</a></li>
 							<li><a href="{{ URL::route('default.user.contact') }}">Contact</a></li>
 						</ul>
 					</div>
