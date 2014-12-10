@@ -33,7 +33,7 @@
 		<div class="price-range"><!--price-range-->
 			<h2>Price Range</h2>
 			<div class="login-form"><!--login form-->
-				<form action="{{ URL::route('default.user.price_range') }}" method="post">
+				<form action="{{ URL::route('default.user.price_range') }}" method="get">
 					<input type="number" placeholder="Min value (VND)" name="minval" />
 					{{ $errors->first('minval', '<p class="error">:message</p>') }}
 					<input type="number" placeholder="max value (VND)" name="maxval" />

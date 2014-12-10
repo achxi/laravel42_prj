@@ -428,7 +428,7 @@ class DefaultUserController extends \BaseController {
 		$this->title = "Achxi :: 404 not found";
 		return View::make('default._layouts.page_404')->with('title', $this->title);
 	}
-	public function price_range()
+	public function price_range($minval=null, $maxval=null)
 	{
 		$validator = Validator::make(
 		    array('Min Value' => Input::get('minval'), 'Max Value' => Input::get('maxval')),
@@ -443,14 +443,17 @@ class DefaultUserController extends \BaseController {
 		$maxval = Input::get('maxval');
 
 		if(!$minval){
-			$products = Sanpham::where('gia', '<=', $maxval)->get();
+			$products = Sanpham::where('gia', '<=', $maxval)->paginate(9);
 		}elseif(!$maxval){
-			$products = Sanpham::where('gia', '>=', $minval)->get();
+			$products = Sanpham::where('gia', '>=', $minval)->paginate(9);
 		}else{
-			$products = Sanpham::where('gia', '>=', $minval)->where('gia', '<=', $maxval)->get();			
+			$products = Sanpham::where('gia', '>=', $minval)->where('gia', '<=', $maxval)->paginate(9);			
 		}
 		$this->layout->title = "Achxi :: Price Range";
-	    $this->layout->nest('content', 'default.user.price_range', array('products' => $products));
+	    $this->layout->nest('content', 'default.user.price_range', array('products' => $products,
+                                                                          'minval' => $minval,
+                                                                          'maxval' =>$maxval
+																	    	));
 	}
 
 /*	public function search_ajax(){

@@ -1,7 +1,7 @@
 @section('content')
 	<h2 class="title text-center">Price Range Items</h2>
 	@if(count($products))
-
+		<div class="col-sm-12">{{ $products->appends(array('minval' => $minval, 'maxval' => $maxval))->links() }}</div>
 		@foreach($products as $product)
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
