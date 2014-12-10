@@ -3,6 +3,8 @@
 				<?php $i = 1;?>
 			@foreach($bot_cats as $bot_cat)
 				<li><a href="#{{$i}}" data-toggle="tab">{{ $bot_cat->tenloaisp }}</a></li>
+				<?php echo "<pre>";?>
+			    <?php echo $bot_cats{4}->tenloaisp;?>
 				<?php $i++;?>
 			@endforeach
 		</ul>
@@ -11,6 +13,9 @@
 		<?php $i = 1;?>
 		@if(count($bot_cat))
 		@foreach($bot_cat->Sanpham as $item)
+				@if($bot_cat->id_loai == $item->id_loai)
+					{{$bot_cat->tensp}}
+				@endif
 				<div class="tab-pane fade active in" id={{$i}} >
 				<div class="col-sm-3">
 					<div class="product-image-wrapper">

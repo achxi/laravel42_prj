@@ -130,6 +130,14 @@ class DefaultUserController extends \BaseController {
 	public function search()
 	{
 		$this->layout->title = "Achxi :: Product By Type";
+
+		if(Request::ajax()){
+			$results = Sanpham::all();
+			foreach($results as $item){
+				$employees[] = array("id" => $item->id, "value" => $item->tensp);
+			}
+			return Response::json($employees);
+		}
 		$str = Input::get('str');
 		if(empty($str)){
 			$results = array();
@@ -137,6 +145,7 @@ class DefaultUserController extends \BaseController {
 			$results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
 		}
 		$this->layout->nest('content', 'default.user.search', array('results' => $results));
+
 	}	
 	public function login()
 	{
@@ -414,5 +423,38 @@ class DefaultUserController extends \BaseController {
 
 		$products = array();
 		$this->layout->nest('content', 'default.user.account', array('products' => $products));
-	}		
+	}
+/*	public function search_ajax(){
+		$this->layout->title = "seach ajax";
+		$str = Input::get('str');
+		// $results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
+		$results = Sanpham::all();
+
+		foreach($results as $item){
+			$employees[] = array("id" => $item->id, "value" => $item->tensp);
+		}
+		// echo "<pre>";
+		// dd($data);
+		// $employees = array($data);
+		// dd($employees);
+
+		$in = array(
+		    "suggestions" => array(
+		        array("value" => "one", "data" => "ON"),
+		        array("value" => "two", "data" => "TW"),
+		        array("value" => "three", "data" => "TH"),
+		        array("value" => "four", "data" => "FO"),
+		    )
+	    );
+
+            $employees = array(
+                 array("value" => "Tom", "id" => "1") ,
+                 array("value" => "Stefan", "id" => "2") ,
+                 array("value" => "Martin", "id" => "3") ,
+                 array("value" => "Sara", "id" => "4") ,
+                 array("value" => "Valarie", "id" => "5") ,
+            );
+		return Response::json($employees);
+		// $this->layout->nest('content', 'default.user.search', array('results' => $results));
+	}	*/
 }

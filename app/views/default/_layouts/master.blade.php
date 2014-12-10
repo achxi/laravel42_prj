@@ -55,6 +55,7 @@
 
   
     {{ HTML::script('public/default/js/jquery.js') }}
+    {{ HTML::script('public/default/js/jquery-ui.min.js') }}
 	{{ HTML::script('public/default/js/bootstrap.min.js') }}
 	{{ HTML::script('public/default/js/jquery.scrollUp.min.js') }}
 	{{ HTML::script('public/default/js/price-range.js') }}

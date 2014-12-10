@@ -24,7 +24,7 @@ class BaseController extends Controller {
 			$this->layout->bot_cats = $this->bot_cats;
 			$this->layout->rands = $this->rands;
 			// echo "<pre>";
-			// dd($this->layout->bot_cats);
+			// print_r($this->layout->bot_cats);
 			// dd($this->layout->types);
 			// dd(DB::getQueryLog());
 		}

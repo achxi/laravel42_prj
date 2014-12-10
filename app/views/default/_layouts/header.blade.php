@@ -122,9 +122,9 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="search_box pull-right">
-						<form action="{{ URL::route('default.user.search') }}" method="post">
-							<input type="text" name="str" placeholder="Search" />
-							<input value="Search" type="hidden" />
+						<form action="{{ URL::route('default.user.search') }}" method="post" id="search_form">
+							<input type="text" name="str" placeholder="Search" id="str" />
+							<input value="Search" type="hidden" name="search" />
 						</form>
 					</div>
 				</div>
