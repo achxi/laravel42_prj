@@ -28,7 +28,7 @@ $(document).ready(function(){
 		});
           
           $.ajax({
-               url: 'search',
+               url: baseURL+'/search',
                type: 'POST',
                dataType: 'json',
                success: function(data){

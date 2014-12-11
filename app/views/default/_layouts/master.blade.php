@@ -53,7 +53,9 @@
 @include('default._layouts.footer', $types)
 	
 
-  
+    <script language="javascript">
+        var baseURL= "<?php echo url();?>";
+    </script>  
     {{ HTML::script('public/default/js/jquery.js') }}
     {{ HTML::script('public/default/js/jquery-ui.min.js') }}
 	{{ HTML::script('public/default/js/bootstrap.min.js') }}
