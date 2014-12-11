@@ -153,14 +153,16 @@ class DefaultUserController extends \BaseController {
 		$this->layout->nest('content', 'default.user.login');
 	}	
 	public function postLogin()
-	{
+	{  //{{ Form::text('username', Input::old('username'), array('placeholder' => 'something')) }}
 		$data = array('username' => Input::get('username'),
 						'password' => Input::get('password')
 					);
 
 		$validator = Validator::make($data, Thanhvien::$auth_rules);
 		if($validator->fails()){
-			return Redirect::back()->withErrors($validator)->withInput();
+			// return Redirect::back()->withErrors($validator)->withInput();
+			// return View::make('default.user.login');
+			return Redirect::route('default.user.login')->withErrors($validator)->withInput();
 		}
 
 /*	    $credentials = [
@@ -172,7 +174,7 @@ class DefaultUserController extends \BaseController {
 		if(Auth::attempt(array('user' => Input::get('username'), 'password' => Input::get('password')))){
 			return Redirect::intended('/')->with(Session::flash('flash_mess', 'Login successfully'));
 		}
-		return Redirect::route('default.user.login')->with(Session::flash('flash_mess', 'Wrong username or password'));
+		return Redirect::route('default.user.login')->with(Session::flash('flash_mess', 'Wrong username or password'))->withInput();
 
 /*		$user = Thanhvien::create(array(
             'user' => 'testmanh',
