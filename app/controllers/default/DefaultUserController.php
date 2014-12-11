@@ -368,12 +368,13 @@ class DefaultUserController extends \BaseController {
 		$input = Input::all();
 		$data = array('loginname' => Input::get('loginname'),
 				'password' => Input::get('password'),
+				'password_confirmation' => Input::get('password_confirmation'),
 				'email' => Input::get('email')
 			);
 
 		$validator = Validator::make($data, Thanhvien::$auth_rules_reg);
 		if($validator->fails()){
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::route('default.user.register')->withErrors($validator)->withInput();
 		}
 
 		$user = Thanhvien::create(array(

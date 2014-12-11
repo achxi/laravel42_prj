@@ -15,7 +15,8 @@ class Thanhvien extends \Eloquent implements UserInterface {
 	];		
 	public static $auth_rules_reg = [
 		'loginname' => 'required|unique:thanhvien,user',
-		'password' => 'required|min:5',
+		'password' => 'required|min:5|confirmed',
+		'password_confirmation' => 'required|min:5',
 		'email' => 'required|email|unique:thanhvien,email'
 	];
 	public static $auth_rules_update = [

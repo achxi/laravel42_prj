@@ -3,7 +3,7 @@
 class Nhomsanpham extends \Eloquent {
 	protected $fillable = [];
 
-	protected $table = 'Nhomsanpham';
+	protected $table = 'nhomsanpham';
 	protected $primaryKey = 'id_nhom';
 
 	public function Loaisanpham(){

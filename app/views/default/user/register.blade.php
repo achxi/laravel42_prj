@@ -5,15 +5,17 @@
 				<div class="col-sm-5 col-sm-offset-1">
 						<div class="signup-form"><!--sign up form-->
 							<h2>New User Signup!</h2>
-							<form action="{{ URL::route('default.user.postregister') }}" method="post">
-								<input type="text" placeholder="Login Name" name="loginname" />
+							{{ Form::open(array('route' => 'default.user.postregister', 'method' => 'post')) }}
+								{{ Form::text('loginname', null, array('placeholder' => 'Login Name')) }}
 								{{ $errors->first('loginname', '<p class="error">:message</p>') }}
-								<input type="email" placeholder="Email Address" name="email" />
+								{{ Form::email('email', null, array('placeholder' => 'Email Address')) }}
 								{{ $errors->first('email', '<p class="error">:message</p>') }}
-								<input type="password" placeholder="Password" name="password" />
+								{{ Form::password('password', array('placeholder' => 'Password')) }}
 								{{ $errors->first('password', '<p class="error">:message</p>') }}
-								<button type="submit" class="btn btn-default">Register</button>
-							</form>
+								{{ Form::password('password_confirmation', array('placeholder' => 'Type Password Again')) }}
+								{{ $errors->first('password_confirmation', '<p class="error">:message</p>') }}
+								{{ Form::button('Register', array('type' => 'submit', 'class' => 'btn btn-default')) }}
+							{{ Form::close() }}
 						</div><!--/sign up form-->
 				</div> <!-- /.col-sm-5 col-sm-offset-1 -->
 			</div> <!-- /.row -->
