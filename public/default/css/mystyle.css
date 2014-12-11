@@ -93,4 +93,11 @@ img.myimg_carousel{
     background-image: none;
 }
 /*******************************
-*******Carousel inner********/
+*******FAQ table********/
+#cart_items .cart_info .table.table-condensed thead tr td.faq {
+  -webkit-align-content: center;
+          align-content: center;
+}
+#cart_items .cart_info .faq_table tr td{
+	padding: 15px;
+}

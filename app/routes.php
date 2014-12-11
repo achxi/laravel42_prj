@@ -44,6 +44,9 @@ Route::get('account', array('before' => 'auth','as' => 'default.user.account', '
 Route::post('postaccount',array('as' => 'default.user.postaccount', 'uses' => 'DefaultUserController@postaccount'));
 
 Route::get('page_404',array('as' => 'default.user.page_404', 'uses' => 'DefaultUserController@page_404'));
+Route::get('faq',array('as' => 'default.user.faq', 'uses' => 'DefaultUserController@faq'));
+Route::get('career',array('as' => 'default.user.career', 'uses' => 'DefaultUserController@career'));
+Route::get('company_info',array('as' => 'default.user.company_info', 'uses' => 'DefaultUserController@company_info'));
 
 Route::get('price_range/',array('as' => 'default.user.price_range', 'uses' => 'DefaultUserController@price_range'));
 

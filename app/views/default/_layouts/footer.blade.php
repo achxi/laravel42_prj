@@ -89,7 +89,7 @@
 								<li><a href="{{ URL::route('default.user.contact') }}">Contact Us</a></li>
 								<li><a href="{{ URL::route('default.user.checkout') }}">Checkout</a></li>
 								<li><a href="{{ URL::route('default.user.cart') }}">Cart status</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li><a href="{{ URL::route('default.user.faq') }}">FAQ’s</a></li>
 							</ul>
 						</div>
 					</div>
@@ -129,8 +129,8 @@
 						<div class="single-widget">
 							<h2>About Achxi-Shop</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
+								<li><a href="{{ URL::route('default.user.company_info') }}">Company Information</a></li>
+								<li><a href="{{ URL::route('default.user.career') }}">Careers</a></li>
 							</ul>
 						</div>
 					</div>

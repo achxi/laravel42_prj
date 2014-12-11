@@ -170,8 +170,9 @@ class DefaultUserController extends \BaseController {
 	        'password' => '123456'
 	    ];
 	    dd(Auth::attempt($credentials));*/
+	    $remember = Input::has('remember')? true: false;
 
-		if(Auth::attempt(array('user' => Input::get('username'), 'password' => Input::get('password')))){
+		if(Auth::attempt(array('user' => Input::get('username'), 'password' => Input::get('password')), $remember)){
 			return Redirect::intended('/')->with(Session::flash('flash_mess', 'Login successfully'));
 		}
 		return Redirect::route('default.user.login')->with(Session::flash('flash_mess', 'Wrong username or password'))->withInput();
@@ -458,7 +459,18 @@ class DefaultUserController extends \BaseController {
                                                                           'maxval' =>$maxval
 																	    	));
 	}
-
+	public function faq(){
+		$this->layout->title = "Achxi :: FAQ";	
+		$this->layout->nest('content', 'default.user.faq');		
+	}
+	public function career(){
+		$this->layout->title = "Achxi :: Career";	
+		$this->layout->nest('content', 'default.user.career');		
+	}
+	public function company_info(){
+		$this->layout->title = "Achxi :: Comapny Info";	
+		$this->layout->nest('content', 'default.user.company_info');		
+	}	
 /*	public function search_ajax(){
 		$this->layout->title = "seach ajax";
 		$str = Input::get('str');
