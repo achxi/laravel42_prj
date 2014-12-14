@@ -1,7 +1,7 @@
 @section('content')
 	<h2 class="title text-center">Compare Items</h2>
 	@if($flag == 0)
-		<div class="error wishlist">Your wishlist items is empty now</div>
+		<div class="error wishlist">Your compare items is empty now</div>
 	@else	
 		@foreach($products as $product)
 					<div class="col-sm-4">

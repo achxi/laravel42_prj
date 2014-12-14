@@ -50,4 +50,14 @@ Route::get('company_info',array('as' => 'default.user.company_info', 'uses' => '
 
 Route::get('price_range/',array('as' => 'default.user.price_range', 'uses' => 'DefaultUserController@price_range'));
 
+Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
+{
+    Route::get('/',array('as' => 'admin.index', 'uses' => 'AdminDefaultController@index'));
+    Route::get('products',array('as' => 'admin.products', 'uses' => 'AdminDefaultController@products'));
+
+});
+
+
+// 
+// 
 // Route::get('search_ajax',array('as' => 'default.user.search_ajax', 'uses' => 'DefaultUserController@search_ajax'));
