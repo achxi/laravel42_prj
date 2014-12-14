@@ -10,59 +10,59 @@
 				  @endif
 				</ol>
 			</div>
-			@if($products)
-				<div class="col-sm-12">{{ $products->links() }}</div>
+			@if($members)
+				<div class="col-sm-12">{{ $members->links() }}</div>
 			@endif
 			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
+				<table class="table table-bordered">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description">ID</td>
-							<td class="description">Type ID</td>
-							<td class="description">Product Name</td>
-							<td class="description">Specification</td>
-							<td class="description">Describe</td>
-							<td class="price">Price (VNĐ)</td>
-							<td class="total">Menu ID</td>
+							<td class="image">Fullname</td>
+							<td class="description">Address</td>
+							<td class="description">Email</td>
+							<td class="description">Phone</td>
+							<td class="description">User Name</td>
+							<td class="description">Password</td>
+							<td class="price">Previlege</td>
+							<td class="total">Level</td>
 							<td>Edit</td>
-							<td></td>
+							<td>Delete</td>
 						</tr>
 					</thead>
 					<tbody>
 					<tr>
-						<td colspan="10" id="add_new"><a href="{{ URL::route('admin.product_add') }}">ADD NEW PRODUCT</a></td>
+						<td colspan="10" id="add_new"><a href="{{ URL::route('admin.product_add') }}">ADD NEW MEMBER</a></td>
 					</tr>
 					<form action="{{ URL::route('default.user.cart_update') }}" method="post">
 						<?php $i=1;?>
-					@if($products)
-						@foreach($products as $item)
+					@if($members)
+						@foreach($members as $item)
 							<tr>
-								<td class="cart_product">
-									<a href="{{ URL::route('default.user.show', $item->id) }}">{{ HTML::image("public/default/images/small/$item->hinh", $item->name)}}</a>
+								<td class="cart_description">
+									{{ $item->hoten }}
 								</td>
 								<td class="cart_description">
-									<p> {{ $item->id }}</p>
+									<p> {{ $item->diachi }}</p>
 								</td>
 								<td class="cart_description">
-									<p> {{ $item->id_loai }}</p>
+									<p> {{ $item->email }}</p>
 								</td>		
 								<td class="cart_description">
-									<p> {{ $item->tensp }}</p>
+									<p> {{ $item->dienthoai }}</p>
 								</td>	
 								<td class="cart_description">
-									<p> {{ $item->cauhinh }}</p>
+									<p> {{ $item->user }}</p>
 								</td>
 								<td class="cart_description">
-									<p> mota </p>
+									<p> {{ substr($item->pass, 0, 10)."..." }} </p>
 								</td>
 								<td class="cart_price">
-									<p>{{ number_format($item->gia,0,'','.') }}</p>
+									<p>{{ $item->hieuluc }}</p>
 								</td>							
 								<td class="cart_total">
-									<p>{{ $item->id_menu }}</p>
+									<p>{{ $item->capquyen }}</p>
 								</td>
-								<td><a href="">Edit</a></td>
+								<td class="cart_description"><a href="">Edit</a></td>
 								<input type="hidden" name="{{ $i }}[id]" value="{{ $item->id }}">
 								<td class="cart_delete">
 									<a class="cart_quantity_delete" href="{{ URL::action('AdminDefaultController@product_destroy', [$item->id]) }}"><i class="fa fa-times"></i></a>

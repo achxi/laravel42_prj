@@ -54,6 +54,9 @@ Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
 {
     Route::get('/',array('as' => 'admin.index', 'uses' => 'AdminDefaultController@index'));
     Route::get('products',array('as' => 'admin.products', 'uses' => 'AdminDefaultController@products'));
+    Route::get('product_destroy/{id}',array('as' => 'admin.product_destroy', 'uses' => 'AdminDefaultController@product_destroy'));
+    Route::get('product_add',array('as' => 'admin.product_add', 'uses' => 'AdminDefaultController@product_add'));
+    Route::get('members',array('as' => 'admin.members', 'uses' => 'AdminDefaultController@members'));
 
 });
 
