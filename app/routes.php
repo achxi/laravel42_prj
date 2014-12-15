@@ -62,6 +62,12 @@ Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
     Route::get('member_destroy/{id}',array('as' => 'admin.member_destroy', 'uses' => 'AdminDefaultController@member_destroy'));
     Route::get('member_edit_form/{id}',array('as' => 'admin.member_edit_form', 'uses' => 'AdminDefaultController@member_edit_form'));
     Route::post('member_edit',array('as' => 'admin.member_edit', 'uses' => 'AdminDefaultController@member_edit'));
+    Route::get('products_type',array('as' => 'admin.products_type', 'uses' => 'AdminDefaultController@products_type'));
+    Route::get('type_destroy/{id}',array('as' => 'admin.type_destroy', 'uses' => 'AdminDefaultController@type_destroy'));
+    Route::get('type_new',array('as' => 'admin.type_new', 'uses' => 'AdminDefaultController@type_new'));
+    Route::post('type_add',array('as' => 'admin.type_add', 'uses' => 'AdminDefaultController@type_add'));
+    Route::get('type_edit_form/{id}',array('as' => 'admin.type_edit_form', 'uses' => 'AdminDefaultController@type_edit_form'));
+    Route::post('type_edit',array('as' => 'admin.type_edit', 'uses' => 'AdminDefaultController@type_edit'));
 
 });
 

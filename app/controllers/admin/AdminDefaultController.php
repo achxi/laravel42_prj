@@ -97,5 +97,53 @@ class AdminDefaultController extends \AdminController {
 			return Redirect::route('admin.members')->with(Session::flash('notify', 'Update user: '.$id.' successfully'));
 		}				
 	}
+	public function products_type(){
+		$this->layout->title = "Achxi :: Products Type";
+		$types = Nhomsanpham::all();
+		$this->layout->nest('content', 'admin.admin.products_type', array('types' => $types));
+	}	
+	public function type_destroy($id){
+		Nhomsanpham::destroy($id);
+		return Redirect::route('admin.products_type')->with(Session::flash('notify', "Delete products type: $id successfully"));
+	}	
+	public function type_new(){
+		$this->layout->title = "Achxi :: Add New Product Type";
+		$this->layout->nest('content', 'admin.admin.type_new');
+	}
+	public function type_add(){
+		$data = array('id_nhom' => Input::get('id_nhom'),
+						'tennhom' => Input::get('tennhom')
+					);
 
+		$validator = Validator::make($data, Nhomsanpham::$add_rules);
+		if($validator->fails()){
+			return Redirect::route('admin.type_new')->withErrors($validator)->withInput();
+		}else{
+			Nhomsanpham::create($data);
+			return Redirect::route('admin.products_type')->with(Session::flash('notify', 'Create products type '.Input::get('tennhom'). ' successfully'));
+		}	
+	}	
+	public function type_edit_form($id){
+		$this->layout->title = "Achxi :: Edit Product Type";
+		$type = Nhomsanpham::find($id);
+		$this->layout->nest('content', 'admin.admin.type_edit_form', array('type' => $type, 'id' => $id));
+	}	
+	public function type_edit(){
+		$id = Input::get('id');
+		$data = array('id_nhom' => Input::get('id_nhom'),
+					  'tennhom' => Input::get('tennhom'),
+			);
+
+		$validator = Validator::make(
+			$data, array('id_nhom' 	=> 'required|numeric|min:1|unique:nhomsanpham,id_nhom,'.$id.',id_nhom',
+						'tennhom'   => 'min:2'
+			)
+		);
+		if($validator->fails()){
+			return Redirect::route('admin.type_edit_form', $id)->withErrors($validator)->withInput();
+		}else{
+			$item = Nhomsanpham::find($id)->update($data);
+			return Redirect::route('admin.products_type')->with(Session::flash('notify', 'Update product type: '.$id.' successfully'));
+		}				
+	}	
 }
