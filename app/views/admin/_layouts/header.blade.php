@@ -40,7 +40,7 @@
 							@if(Auth::check())
 								<li><a href="{{ URL::route('admin.products') }}"><i class="fa fa-user"></i> Products</a></li>
 							@else
-								<li><a href="{{ URL::route('default.user.register') }}"><i class="fa fa-user"></i> Register</a></li>
+								<li><a href="{{ URL::route('admin.members') }}"><i class="fa fa-user"></i> Members</a></li>
 							@endif
 							<li><a href="{{ URL::route('default.user.wishlist') }}"><i class="fa fa-star"></i> Wishlist</a></li>
 							<li><a href="{{ URL::route('default.user.checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>

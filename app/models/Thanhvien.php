@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Auth\UserInterface;
 class Thanhvien extends \Eloquent implements UserInterface {
-	protected $fillable = ['user', 'pass', 'email'];
+	protected $fillable = ['user', 'pass', 'email', 'hoten', 'diachi', 'dienthoai', 'hieuluc', 'capquyen'];
 
 	protected $table = 'thanhvien';
 	protected $primaryKey = 'user';

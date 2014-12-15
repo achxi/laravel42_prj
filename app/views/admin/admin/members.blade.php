@@ -4,7 +4,7 @@
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="{{ URL::route('default.user.index') }}">Home</a></li>
-				  <li class="active">All Products</li>
+				  <li class="active">All Members</li>
 				  @if(Session::has('notify'))
 					<li class="error">{{ Session::get('notify') }}</li>
 				  @endif
@@ -31,7 +31,7 @@
 					</thead>
 					<tbody>
 					<tr>
-						<td colspan="10" id="add_new"><a href="{{ URL::route('admin.product_add') }}">ADD NEW MEMBER</a></td>
+						<td colspan="10" id="add_new"><a href="{{ URL::route('admin.member_new') }}">ADD NEW MEMBER</a></td>
 					</tr>
 					<form action="{{ URL::route('default.user.cart_update') }}" method="post">
 						<?php $i=1;?>
@@ -62,10 +62,10 @@
 								<td class="cart_total">
 									<p>{{ $item->capquyen }}</p>
 								</td>
-								<td class="cart_description"><a href="">Edit</a></td>
+								<td class="cart_description"><a href="{{ URL::action('AdminDefaultController@member_edit_form', [$item->user]) }}">Edit</a></td>
 								<input type="hidden" name="{{ $i }}[id]" value="{{ $item->id }}">
 								<td class="cart_delete">
-									<a class="cart_quantity_delete" href="{{ URL::action('AdminDefaultController@product_destroy', [$item->id]) }}"><i class="fa fa-times"></i></a>
+									<a class="cart_quantity_delete" href="{{ URL::action('AdminDefaultController@member_destroy', [$item->user]) }}"><i class="fa fa-times"></i></a>
 								</td>
 							</tr>
 							<?php $i++;?>
@@ -73,12 +73,12 @@
 					@else
 						<tr>
 							<td colspan="5">
-								<div id="empty_cart">You currently don't have any product in database</div>
+								<div id="empty_cart">You currently don't have any member in database</div>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="5">
-								<a href="{{ URL::route('default.user.index') }}" class="btn btn-default update">ADD PRODUCT</a>
+								<a href="{{ URL::route('default.user.index') }}" class="btn btn-default update">ADD NEW MEMBER</a>
 							</td>
 						</tr>
 					@endif
