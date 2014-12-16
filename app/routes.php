@@ -78,6 +78,13 @@ Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
     Route::get('kind_edit_form/{id}',array('as' => 'admin.kind_edit_form', 'uses' => 'AdminDefaultController@kind_edit_form'));
     Route::post('kind_edit',array('as' => 'admin.kind_edit', 'uses' => 'AdminDefaultController@kind_edit'));
 
+    Route::get('bill',array('as' => 'admin.bill', 'uses' => 'AdminDefaultController@bill'));
+    Route::get('bill_destroy/{id}',array('as' => 'admin.bill_destroy', 'uses' => 'AdminDefaultController@bill_destroy'));
+    Route::get('bill_new',array('as' => 'admin.bill_new', 'uses' => 'AdminDefaultController@bill_new'));
+    Route::post('bill_add',array('as' => 'admin.bill_add', 'uses' => 'AdminDefaultController@bill_add'));
+    Route::get('bill_edit_form/{id}',array('as' => 'admin.bill_edit_form', 'uses' => 'AdminDefaultController@bill_edit_form'));
+    Route::post('bill_edit',array('as' => 'admin.bill_edit', 'uses' => 'AdminDefaultController@bill_edit'));
+
 
 });
 

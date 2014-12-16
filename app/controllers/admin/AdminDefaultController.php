@@ -213,5 +213,79 @@ class AdminDefaultController extends \AdminController {
 			return Redirect::route('admin.products_kind')->with(Session::flash('notify', 'Update product kind: '.$id.' successfully'));
 		}				
 	}
+	public function bill(){
+		$this->layout->title = "Achxi :: Bill";
+		$bills = Hoadon::all();
+		$this->layout->nest('content', 'admin.admin.bill', array('bills' => $bills));
+	}
+	public function bill_destroy($id){
+		$items = Hoadon::where('id_hoadon','=',$id);
+		Hoadon::destroy($id);
+		return Redirect::route('admin.bill')->with(Session::flash('notify', "Delete bill: $id successfully"));
+	}
+	public function bill_new(){
+		$this->layout->title = "Achxi :: Add New Bill";
+		$this->layout->nest('content', 'admin.admin.bill_new');
+	}
+	public function bill_add(){
+		$data = array('id_hoadon' => Input::get('id_hoadon'),
+						'hoten' => Input::get('hoten'),
+						'diachi' => Input::get('diachi'),
+						'email' => Input::get('email'),
+						'dienthoai' => Input::get('dienthoai'),
+						'fax' => Input::get('fax'),
+						'cty' => Input::get('cty'),
+						'id' => Input::get('id'),
+						'soluong' => Input::get('soluong'),
+						'tongtien' => Input::get('tongtien'),
+						'tinhtrang' => Input::get('tinhtrang')
+					);
+
+		$validator = Validator::make($data, Hoadon::$add_rules);
+		if($validator->fails()){
+			return Redirect::route('admin.bill_new')->withErrors($validator)->withInput();
+		}else{
+			Hoadon::create($data);
+			return Redirect::route('admin.bill')->with(Session::flash('notify', 'Create bill '.Input::get('id_hoadon'). ' successfully'));
+		}	
+	}	
+	public function bill_edit_form($id){
+		$this->layout->title = "Achxi :: Edit Bill";
+		$bill = Hoadon::find($id);
+		$this->layout->nest('content', 'admin.admin.bill_edit_form', array('bill' => $bill, 'id' => $id));
+	}
+	public function bill_edit(){
+		$id = Input::get('id');
+		$data = array('id_hoadon' => Input::get('id_hoadon'),
+						'hoten' => Input::get('hoten'),
+						'diachi' => Input::get('diachi'),
+						'email' => Input::get('email'),
+						'dienthoai' => Input::get('dienthoai'),
+						'fax' => Input::get('fax'),
+						'cty' => Input::get('cty'),
+						'id' => Input::get('id'),
+						'soluong' => Input::get('soluong'),
+						'tongtien' => Input::get('tongtien'),
+						'tinhtrang' => Input::get('tinhtrang')
+					);
+
+		$validator = Validator::make(
+			$data, array(
+						'id_hoadon' => 'required|numeric|min:1|unique:hoadon,id_hoadon,'.$id.',id_hoadon',
+						'email' => 'required|email',
+						'dienthoai' => 'required|numeric',
+						'fax' => 'required|numeric',
+						'id' => 'numeric',
+						'soluong' => 'numeric',
+						'tongtien' => 'numeric'
+			)
+		);
+		if($validator->fails()){
+			return Redirect::route('admin.bill_edit_form', $id)->withErrors($validator)->withInput();
+		}else{
+			Hoadon::where('id_hoadon','=',$id)->update($data);
+			return Redirect::route('admin.bill')->with(Session::flash('notify', 'Update bill: '.$id.' successfully'));
+		}				
+	}
 
 }
