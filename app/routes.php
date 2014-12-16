@@ -56,18 +56,28 @@ Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
     Route::get('products',array('as' => 'admin.products', 'uses' => 'AdminDefaultController@products'));
     Route::get('product_destroy/{id}',array('as' => 'admin.product_destroy', 'uses' => 'AdminDefaultController@product_destroy'));
     Route::get('product_add',array('as' => 'admin.product_add', 'uses' => 'AdminDefaultController@product_add'));
+
     Route::get('members',array('as' => 'admin.members', 'uses' => 'AdminDefaultController@members'));
     Route::get('member_new',array('as' => 'admin.member_new', 'uses' => 'AdminDefaultController@member_new'));
     Route::post('member_add',array('as' => 'admin.member_add', 'uses' => 'AdminDefaultController@member_add'));
     Route::get('member_destroy/{id}',array('as' => 'admin.member_destroy', 'uses' => 'AdminDefaultController@member_destroy'));
     Route::get('member_edit_form/{id}',array('as' => 'admin.member_edit_form', 'uses' => 'AdminDefaultController@member_edit_form'));
     Route::post('member_edit',array('as' => 'admin.member_edit', 'uses' => 'AdminDefaultController@member_edit'));
+
     Route::get('products_type',array('as' => 'admin.products_type', 'uses' => 'AdminDefaultController@products_type'));
     Route::get('type_destroy/{id}',array('as' => 'admin.type_destroy', 'uses' => 'AdminDefaultController@type_destroy'));
     Route::get('type_new',array('as' => 'admin.type_new', 'uses' => 'AdminDefaultController@type_new'));
     Route::post('type_add',array('as' => 'admin.type_add', 'uses' => 'AdminDefaultController@type_add'));
     Route::get('type_edit_form/{id}',array('as' => 'admin.type_edit_form', 'uses' => 'AdminDefaultController@type_edit_form'));
     Route::post('type_edit',array('as' => 'admin.type_edit', 'uses' => 'AdminDefaultController@type_edit'));
+
+    Route::get('products_kind',array('as' => 'admin.products_kind', 'uses' => 'AdminDefaultController@products_kind'));
+    Route::get('kind_destroy/{id}',array('as' => 'admin.kind_destroy', 'uses' => 'AdminDefaultController@kind_destroy'));
+    Route::get('kind_new',array('as' => 'admin.kind_new', 'uses' => 'AdminDefaultController@kind_new'));
+    Route::post('kind_add',array('as' => 'admin.kind_add', 'uses' => 'AdminDefaultController@kind_add'));
+    Route::get('kind_edit_form/{id}',array('as' => 'admin.kind_edit_form', 'uses' => 'AdminDefaultController@kind_edit_form'));
+    Route::post('kind_edit',array('as' => 'admin.kind_edit', 'uses' => 'AdminDefaultController@kind_edit'));
+
 
 });
 

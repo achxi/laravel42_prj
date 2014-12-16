@@ -107,3 +107,8 @@ td#add_new{
     text-align: center;
     font-size: 16px;
 }
+/************************
+****New Kind of Product***/
+.login-form.kind_new select{
+    margin-bottom: 10px;
+}
