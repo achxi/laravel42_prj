@@ -142,8 +142,12 @@ class AdminDefaultController extends \AdminController {
 		if($validator->fails()){
 			return Redirect::route('admin.type_edit_form', $id)->withErrors($validator)->withInput();
 		}else{
-			$item = Nhomsanpham::find($id)->update($data);
+			Nhomsanpham::where('id_nhom','=',$id)->update($data);
+			$items = Loaisanpham::where('id_nhom','=',$id);
+			if($items){
+				$items->update(array('id_nhom' => Input::get('id_nhom')));
+			}
 			return Redirect::route('admin.products_type')->with(Session::flash('notify', 'Update product type: '.$id.' successfully'));
 		}				
-	}	
+	}
 }
