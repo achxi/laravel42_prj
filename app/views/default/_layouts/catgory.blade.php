@@ -5,6 +5,7 @@
 				<li><a href="#{{$i}}" data-toggle="tab">{{ $bot_cat->tenloaisp }}</a></li>
 				<?php echo "<pre>";?>
 			    <?php echo $bot_cats{4}->tenloaisp;?>
+			    <?php echo $bot_cat->Sanpham{0}->tensp;?>
 				<?php $i++;?>
 			@endforeach
 		</ul>
