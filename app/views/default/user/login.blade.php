@@ -15,7 +15,7 @@
 								Keep me signed in
 							</span>
 							{{ Form::button('Login', array('type' => 'submit', 'class' => 'btn btn-default')) }}
-							@if(Session::has('flash_mess'))
+							@if(Session::has('flash_message'))
 								<div class="error">{{ Session::get('flash_mess') }}</div>
 							@endif
 						{{ Form::close() }}

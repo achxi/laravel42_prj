@@ -23,6 +23,13 @@ class Thanhvien extends \Eloquent implements UserInterface {
 		'password' => 'required|min:5',
 		'email' => 'required|email|unique:thanhvien,email,'
 	];	
+	public function post_account($user = ''){
+		return array(
+			'email' => 'required|email|unique:thanhvien,email'.($user ? ",".$user : '' ).',user',
+			'password'           => 'required|min:5',
+			'phone'              => 'numeric'
+		);
+	}
 	/**
 	 * Get the unique identifier for the user.
 	 *

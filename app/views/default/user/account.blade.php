@@ -19,7 +19,7 @@
 							    {{ Form::text('phone', Auth::user()->dienthoai?Auth::user()->dienthoai:'',array('placeholder' => 'Phone')) }}
 								{{ $errors->first('phone', '<p class="error">:message</p>') }}
 								<button type="submit" class="btn btn-default">Update</button>
-								@if(Session::has('flash_mess'))
+								@if(Session::has('flash_message'))
 									<div class="error">{{ Session::get('flash_mess') }}</div>
 								@endif
 							{{ Form::close() }}

@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::pattern('id', '[1-9][0-9]?');
 
 Route::get('/',array('as' => 'default.user.index', 'uses' => 'DefaultUserController@index'));
 Route::get('show/{id}',array('as' => 'default.user.show', 'uses' => 'DefaultUserController@show'));

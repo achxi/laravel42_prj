@@ -2,69 +2,12 @@
 
 class DefaultUserController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /DefaultUserController
-	 *
-	 * @return Response
-	 */
-	// protected $layout = 'default._layouts.master';
-
 	public function index()
 	{
 		$products = Sanpham::paginate(9);
 		$this->layout->title = "Achxi :: Welcome Home";
-		// 
-		// $groups = Nhomsanpham::find(1);
-		// $groups = Nhomsanpham::find(2)->get();
-		// $groups = Nhomsanpham::all();
-		
-/*		foreach($types as $type){
-			foreach($type->Loaisanpham as $some){
-				if($some->id_nhom == 1){
-				echo $some->tenloaisp."<br/>";
-				}
-			}
-		}	*/
-
-/*		foreach($groups->Loaisanpham as $group){
-				echo $group->tenloaisp."<br/>";
-		}       */ 
-			// echo "<pre>";
-			// // dd(DB::getQueryLog());
-			// print_r($types);
-
-		// return View::make('default.user.index', compact(array('products', 'types')));
 	    $this->layout->nest('content', 'default.user.index', array('products' => $products));
 	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /DefaultUserController/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /DefaultUserController
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /DefaultUserController/{id}DefaultUserController
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		$this->layout->title = "Achxi :: Product Details";
@@ -85,42 +28,6 @@ class DefaultUserController extends \BaseController {
 																	'qty'  => $qty
 																	));
 	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /DefaultUserController/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /DefaultUserController/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /DefaultUserController/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 	public function type($id)
 	{
 		$this->layout->title = "Achxi :: Product By Type";
@@ -130,7 +37,6 @@ class DefaultUserController extends \BaseController {
 	public function search()
 	{
 		$this->layout->title = "Achxi :: Product By Type";
-
 		if(Request::ajax()){
 			$results = Sanpham::all();
 			foreach($results as $item){
@@ -153,36 +59,22 @@ class DefaultUserController extends \BaseController {
 		$this->layout->nest('content', 'default.user.login');
 	}	
 	public function postLogin()
-	{  //{{ Form::text('username', Input::old('username'), array('placeholder' => 'something')) }}
+	{
 		$data = array('username' => Input::get('username'),
 						'password' => Input::get('password')
 					);
 
 		$validator = Validator::make($data, Thanhvien::$auth_rules);
 		if($validator->fails()){
-			// return Redirect::back()->withErrors($validator)->withInput();
-			// return View::make('default.user.login');
 			return Redirect::route('default.user.login')->withErrors($validator)->withInput();
 		}
 
-/*	    $credentials = [
-	        'user' => 'testmanh',
-	        'password' => '123456'
-	    ];
-	    dd(Auth::attempt($credentials));*/
 	    $remember = Input::has('remember')? true: false;
 
 		if(Auth::attempt(array('user' => Input::get('username'), 'password' => Input::get('password')), $remember)){
 			return Redirect::intended('/')->with(Session::flash('flash_mess', 'Login successfully'));
 		}
-		return Redirect::route('default.user.login')->with(Session::flash('flash_mess', 'Wrong username or password'))->withInput();
-
-/*		$user = Thanhvien::create(array(
-            'user' => 'testmanh',
-            'pass' => Hash::make('123456')
-        ));
-
-		Auth::login($user);*/
+		return Redirect::route('default.user.login')->with(Session::flash('flash_message', 'Wrong username or password'))->withInput();
 	}		
 
 	public function logout(){
@@ -203,7 +95,7 @@ class DefaultUserController extends \BaseController {
 		);
 		if($validator->fails()){
 			$errors = $validator->messages();
-			return Redirect::back()->withErrors($validator);
+			return Redirect::route('default.user.cart')->withErrors($validator);
 		}
 		$id = Input::get('id');
 		$quantity = Input::get('quantity');
@@ -248,7 +140,7 @@ class DefaultUserController extends \BaseController {
 		    );
 			if($validator->fails()){
 				$errors = $validator->messages();
-				return Redirect::back()->withErrors($validator);
+				return Redirect::route('default.user.cart')->withErrors($validator);
 			}
 		}
 		foreach (Cart::contents() as $item) {
@@ -304,8 +196,6 @@ class DefaultUserController extends \BaseController {
 		}else{
 			Session::push('compare.list', $id);
 		}
-		// echo "<pre>";
-		// dd(Session::get('compare.list'));
 		return Redirect::route('default.user.compare');
 	}		
 	public function compare()
@@ -341,8 +231,7 @@ class DefaultUserController extends \BaseController {
 	public function checkout()
 	{
 		$this->layout->title = "Achxi :: Checkout";
-		$products = array();
-		$this->layout->nest('content', 'default.user.checkout', array('products' => $products));
+		$this->layout->nest('content', 'default.user.checkout');
 	}		
 	public function postcheckout()
 	{
@@ -356,13 +245,12 @@ class DefaultUserController extends \BaseController {
 		//redirect to home page
 		$products = array();
 		$this->layout->nest('content', 'default.user.checkout', array('products' => $products));
-		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Thank you for using our shopping system. Our manager is going to contact you soon to confirm the process'));;
+		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Thank you for using our shopping system. Our manager is going to contact you soon to confirm the process'));
 	}		
 	public function register()
 	{
 		$this->layout->title = "Achxi :: Register Account";
-		$products = array();
-		$this->layout->nest('content', 'default.user.register', array('products' => $products));
+		$this->layout->nest('content', 'default.user.register');
 	}	
 	public function postregister()
 	{
@@ -385,16 +273,14 @@ class DefaultUserController extends \BaseController {
         ));
 
 		Auth::login($user);
-		$products = array();
-		$this->layout->nest('content', 'default.user.register', array('products' => $products));
-		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'You have been registered an account successfully'));;
+		$this->layout->nest('content', 'default.user.register');
+		return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'You have been registered an account successfully'));
 	}	
 	public function account()
 	{
 		$this->layout->title = "Achxi :: Account Setting";
 		$user = Thanhvien::where('user', '=', Auth::user()->user)
            ->first();
-		$products = array();
 		$this->layout->nest('content', 'default.user.account', array('user' => $user));
 	}	
 	public function postaccount()
@@ -404,15 +290,13 @@ class DefaultUserController extends \BaseController {
 				'email' => Input::get('email'),
 				'phone' => Input::get('phone'),
 			);
+		if(Auth::check()){
+			$auth = Auth::user();
+		}
 
-		$validator = Validator::make(
-			$data, array('email' => 'required|email|unique:thanhvien,email,'.Auth::user()->user.',user',
-			'password'           => 'required|min:5',
-			'phone'              => 'numeric'
-			)
-		);
+		$validator = Validator::make($data, $auth->post_account(Auth::user()->user));
 		if($validator->fails()){
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::route('default.user.account')->withErrors($validator)->withInput();
 		}
 		if(Auth::attempt(array('user' => Input::get('loginname'), 'password' => Input::get('password')))){
 			$user = Thanhvien::find(Input::get('loginname'));
@@ -421,16 +305,16 @@ class DefaultUserController extends \BaseController {
 			$user->diachi = Input::get('address');
 			$user->dienthoai = Input::get('phone');
 			$user->save();
-			return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Updated successfully'));;
+			return Redirect::route('default.user.index')->with(Session::flash('flash_mess', 'Updated successfully'));
 		}
-		return Redirect::route('default.user.account')->with(Session::flash('flash_mess', 'Wrong username or password'));
+		return Redirect::route('default.user.account')->with(Session::flash('flash_message', 'Wrong username or password'));
 
 		$products = array();
 		$this->layout->nest('content', 'default.user.account', array('products' => $products));
 	}
 	public function page_404(){
 		$this->title = "Achxi :: 404 not found";
-		return View::make('default._layouts.page_404')->with('title', $this->title);
+		return View::make('default.user.page_404')->with('title', $this->title);
 	}
 	public function price_range($minval=null, $maxval=null)
 	{
@@ -440,7 +324,7 @@ class DefaultUserController extends \BaseController {
 		);
 		if($validator->fails()){
 			$errors = $validator->messages();
-			return Redirect::back()->withErrors($validator);
+			return Redirect::route('default.user.index')->withErrors($validator);
 		}
 
 		$minval = Input::get('minval');
@@ -471,37 +355,4 @@ class DefaultUserController extends \BaseController {
 		$this->layout->title = "Achxi :: Comapny Info";	
 		$this->layout->nest('content', 'default.user.company_info');		
 	}	
-/*	public function search_ajax(){
-		$this->layout->title = "seach ajax";
-		$str = Input::get('str');
-		// $results = Sanpham::where('tensp', 'LIKE', '%'.$str.'%' )->get();
-		$results = Sanpham::all();
-
-		foreach($results as $item){
-			$employees[] = array("id" => $item->id, "value" => $item->tensp);
-		}
-		// echo "<pre>";
-		// dd($data);
-		// $employees = array($data);
-		// dd($employees);
-
-		$in = array(
-		    "suggestions" => array(
-		        array("value" => "one", "data" => "ON"),
-		        array("value" => "two", "data" => "TW"),
-		        array("value" => "three", "data" => "TH"),
-		        array("value" => "four", "data" => "FO"),
-		    )
-	    );
-
-            $employees = array(
-                 array("value" => "Tom", "id" => "1") ,
-                 array("value" => "Stefan", "id" => "2") ,
-                 array("value" => "Martin", "id" => "3") ,
-                 array("value" => "Sara", "id" => "4") ,
-                 array("value" => "Valarie", "id" => "5") ,
-            );
-		return Response::json($employees);
-		// $this->layout->nest('content', 'default.user.search', array('results' => $results));
-	}	*/
 }
