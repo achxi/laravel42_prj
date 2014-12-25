@@ -16,7 +16,7 @@
 									{{ HTML::image("public/default/images/small/$item->hinh", $item->tensp) }}
 									<h2>{{ number_format($item->gia,0,'','.').' VND' }}</h2>
 									<p>{{ $item->tensp }}</p>
-									<a href="{{ URL::route('default.user.show', $item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									<a href="{{ URL::route('default.user.show', [$item->id, Str::slug($item->tensp)]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 							</div>
 						</div>

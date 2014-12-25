@@ -101,7 +101,7 @@
 									@foreach($types as $type)
 											@foreach($type->Loaisanpham as $item)
 												@if($item->id_nhom == 1)
-										<li><a href="{{ URL::route('default.user.type', $item->id_loai) }}">{{ $item->tenloaisp }}</a></li>
+										<li><a href="{{ URL::route('default.user.type', [$item->id_loai, Str::slug($item->tenloaisp)]) }}">{{ $item->tenloaisp }}</a></li>
 												@endif
 											@endforeach
 									@endforeach
@@ -117,7 +117,7 @@
 									@foreach($types as $type)
 											@foreach($type->Loaisanpham as $item)
 												@if($item->id_nhom == 2)
-										<li><a href="{{ URL::route('default.user.type', $item->id_loai) }}">{{ $item->tenloaisp }}</a></li>
+										<li><a href="{{ URL::route('default.user.type', [$item->id_loai, Str::slug($item->tenloaisp)]) }}">{{ $item->tenloaisp }}</a></li>
 												@endif
 											@endforeach
 									@endforeach

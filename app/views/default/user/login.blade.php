@@ -16,7 +16,7 @@
 							</span>
 							{{ Form::button('Login', array('type' => 'submit', 'class' => 'btn btn-default')) }}
 							@if(Session::has('flash_message'))
-								<div class="error">{{ Session::get('flash_mess') }}</div>
+								<div class="error">{{ Session::get('flash_message') }}</div>
 							@endif
 						{{ Form::close() }}
 					</div><!--/login form-->

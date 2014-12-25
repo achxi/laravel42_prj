@@ -26,7 +26,7 @@
 						@foreach($carts as $cart)
 							<tr>
 								<td class="cart_product">
-									<a href="{{ URL::route('default.user.show', $cart->id) }}">{{ HTML::image("public/default/images/small/$cart->hinh", $cart->name)}}</a>
+									<a href="{{ URL::route('default.user.show', [$cart->id, Str::slug($cart->name)]) }}">{{ HTML::image("public/default/images/small/$cart->hinh", $cart->name)}}</a>
 								</td>
 								<td class="cart_description">
 									<h4><a href="">{{ $cart->name }}</a></h4>

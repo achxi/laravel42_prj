@@ -18,7 +18,7 @@
 							<ul>
 								@foreach($type->Loaisanpham as $group)
 									@if($group->id_nhom == $type->id_nhom)
-									 <li><a href="<?php echo URL::route('default.user.type', $group->id_loai); ?>"> {{ $group->tenloaisp }} </a></li>
+									 <li><a href="<?php echo URL::route('default.user.type', [$group->id_loai, Str::slug($group->tenloaisp)]); ?>"> {{ $group->tenloaisp }} </a></li>
 									@endif
 								@endforeach
 							</ul>

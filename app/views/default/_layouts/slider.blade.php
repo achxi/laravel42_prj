@@ -15,7 +15,7 @@
 								<h1><span>ACHXI</span>-SHOP</h1>
 								<h2>Best Laptop Shop In The World</h2>
 								<p>We still offer the same great products at unbelievable prices. So no worries there. </p>
-								<a type="button" class="btn btn-default get" href="{{ URL::route('default.user.show', 9)}}">Get it now</a>
+								<a type="button" class="btn btn-default get" href="{{ URL::route('default.user.show', [9, 'samsung-np535u3x'])}}">Get it now</a>
 							</div>
 							<div class="col-sm-6">
 								{{ HTML::image('public/default/images/large/SamsungNP535U3X.jpg', 'SamsungNP535U3X', array('class' => 'girl img-responsive')) }}
@@ -27,7 +27,7 @@
 								<h1><span>ACHXI</span>-SHOP</h1>
 								<h2>Best Laptop Shop In The World</h2>
 								<p>Check out the ultra-quick performance of an Ultrabook, a stylish and dependable MacBook, or get both a tablet and laptop in one with a convertible laptop. Conquer with powerful gaming laptops or go sleek and simple with a cloud-based Chromebook.</p>
-								<a type="button" class="btn btn-default get" href="{{ URL::route('default.user.show', 20)}}">Get it now</a>
+								<a type="button" class="btn btn-default get" href="{{ URL::route('default.user.show', [20, 's200e'])}}">Get it now</a>
 							</div>
 							<div class="col-sm-6">
 								{{ HTML::image('public/default/images/large/S200E.jpg', 'S200E', array('class' => 'girl img-responsive')) }}
@@ -40,7 +40,7 @@
 								<h1><span>ACHXI</span>-SHOP</h1>
 								<h2>Best Laptop Shop In The World</h2>
 								<p>From transformer touchscreens to trusty MacBooks, our selection of laptops is filled with all the latest models from leading tech brands like Samsung, Apple, Lenovo and Acer. </p>
-								<a type="button" class="btn btn-default get" href="{{ URL::route('default.user.show', 26)}}">Get it now</a>
+								<a type="button" class="btn btn-default get" href="{{ URL::route('default.user.show', [26, 'lenovo-s400'])}}">Get it now</a>
 							</div>
 							<div class="col-sm-6">
 								{{ HTML::image('public/default/images/large/LENOVOS400.jpg', 'LENOVOS400', array('class' => 'girl img-responsive')) }}

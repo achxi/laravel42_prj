@@ -10,7 +10,7 @@
 										{{ HTML::image("public/default/images/large/$cat->hinh", "$cat->tensp", array('class' => 'myimg')) }}
 										<h2>{{ number_format($cat->gia,0,'','.')." VNĐ" }}</h2>
 										<p>{{ $cat->tensp }}</p>
-										<a href="{{ URL::route('default.user.show', $cat->id) }}" class='btn btn-default add-to-cart'>
+										<a href="{{ URL::route('default.user.show', [$cat->id, Str::slug($cat->tensp)]) }}" class='btn btn-default add-to-cart'>
 										     <i class="fa fa-shopping-cart"></i>Add to cart
 										</a>
 									</div> <!-- /.productinfo text-center -->
@@ -19,7 +19,7 @@
 											<h3>{{ $cat->cauhinh }}</h3>
 											<h2>{{ number_format($cat->gia,0,'','.')." VNĐ" }}</h2>
 											<p>{{ $cat->tensp }}</p>
-											<a href="{{ URL::route('default.user.show', $cat->id) }}" class='btn btn-default add-to-cart'>
+											<a href="{{ URL::route('default.user.show', [$cat->id, Str::slug($cat->tensp)]) }}" class='btn btn-default add-to-cart'>
 										     <i class="fa fa-shopping-cart"></i>Add to cart
 											</a>
 										</div> <!-- /.overlay-content -->
