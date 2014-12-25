@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="{{ URL::route('default.user.index') }}">Home</a></li>
+				  <li><a href="{{ URL::route('admin.index') }}">Home</a></li>
 				  <li class="active">All Products</li>
 				  @if(Session::has('notify'))
 					<li class="error">{{ Session::get('notify') }}</li>
@@ -38,7 +38,7 @@
 					@if($products)
 						@foreach($products as $item)
 							<tr>
-								<td class="cart_product">
+								<td class="cart_description">
 									<a href="{{ URL::route('default.user.show', $item->id) }}">{{ HTML::image("public/default/images/small/$item->hinh", $item->name)}}</a>
 								</td>
 								<td class="cart_description">

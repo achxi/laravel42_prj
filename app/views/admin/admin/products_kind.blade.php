@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="{{ URL::route('default.user.index') }}">Home</a></li>
+				  <li><a href="{{ URL::route('admin.index') }}">Home</a></li>
 				  <li class="active">Products Kind</li>
 				  @if(Session::has('notify'))
 					<li class="error">{{ Session::get('notify') }}</li>
